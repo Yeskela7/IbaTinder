@@ -1,30 +1,48 @@
 public class User {
 
-    private final String uid;
-    private final String fullName;
+    private final String nickname;
+    private final String name;
+    private final String surname;
+    private final String picURL;
     private final int age;
 
-    public User(String uid, String fullName, int age) {
-        this.uid = uid;
-        this.fullName = fullName;
+    public User(String nickname, String name, String surname, String picURL, int age) {
+        this.nickname = nickname;
+        this.name = name;
+        this.surname = surname;
+        this.picURL = picURL;
         this.age = age;
     }
 
-    public String getUid() {
-        return uid;
+    public String getNickname() {
+        return nickname;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
 
     public int getAge() {
         return age;
     }
 
-    @Override
-    public String toString() {
-        return "Name: " + fullName + ", UID: " + uid + ", Age: "+ age;
+    public String getName() {
+        return name;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getPicURL() {
+        return picURL;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "nickname='" + nickname + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", picURL='" + picURL + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
