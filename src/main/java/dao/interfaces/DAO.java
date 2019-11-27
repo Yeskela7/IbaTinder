@@ -2,7 +2,8 @@ package dao.interfaces;
 
 import java.util.List;
 
-public interface Dao<T> {
+public interface DAO<T> {
+
     T get(int id);
 
     List<T> getAll();
