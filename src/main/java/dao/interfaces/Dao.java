@@ -2,7 +2,7 @@ package dao.interfaces;
 
 import java.util.List;
 
-public interface DAO<T> {
+public interface Dao<T> {
 
     T get(int id);
 
