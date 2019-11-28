@@ -1,3 +1,5 @@
+package classes;
+
 public class User {
 
     private final String nickname;
