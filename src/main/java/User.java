@@ -1,21 +1,21 @@
 public class User {
 
-    private final String nickname;
+    private final String email;
     private final String name;
     private final String surname;
     private final String picURL;
     private final int age;
 
-    public User(String nickname, String name, String surname, String picURL, int age) {
-        this.nickname = nickname;
+    public User(String email, String name, String surname, String picURL, int age) {
+        this.email = email;
         this.name = name;
         this.surname = surname;
         this.picURL = picURL;
         this.age = age;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getEmail() {
+        return email;
     }
 
     public int getAge() {
@@ -37,7 +37,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "nickname='" + nickname + '\'' +
+                "email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", picURL='" + picURL + '\'' +

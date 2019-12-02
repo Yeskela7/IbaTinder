@@ -4,7 +4,6 @@ import classes.User;
 import dao.interfaces.Dao;
 import dao.localstore.UsersDaoSql;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,9 +15,9 @@ public class UsersDaoService {
         return usersDao.getAll();
     }
 
-    public List<User> getUsersWithNickname(String nickname) {
+    public List<User> getUsersWithEmail(String email) {
         return usersDao.getAll().stream()
-                .filter(user -> user.getName().equalsIgnoreCase(nickname))
+                .filter(user -> user.getName().equalsIgnoreCase(email))
                 .collect(Collectors.toList());
     }
 
@@ -34,24 +33,7 @@ public class UsersDaoService {
                 .collect(Collectors.toList());
     }
 
-    public List<User> getUsersOver(int age) {
-        return usersDao.getAll().stream()
-                .filter(user -> user.getAge() > age)
-                .collect(Collectors.toList());
-    }
-
-    public List<User> getUsersUnder(int age) {
-        return usersDao.getAll().stream()
-                .filter(user -> user.getAge() > age)
-                .collect(Collectors.toList());
-    }
-
-    public List<User> getFilteredUsersByAge(int min, int max){
-        return usersDao.getAll().stream().filter(user -> user.getAge() > min)
-                .filter(user -> user.getAge() < max).collect(Collectors.toList());
-    }
-
-    public User getUser(int userId){
+    public User getUser(int userId) {
         return usersDao.get(userId);
     }
 }
