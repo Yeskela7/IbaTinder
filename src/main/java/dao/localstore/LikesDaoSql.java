@@ -1,34 +1,35 @@
 package dao.localstore;
 
+import classes.Like;
 import dao.interfaces.Dao;
 
 import java.util.List;
 
-public class LikesDaoSql implements Dao {
+public class LikesDaoSql implements Dao<Like> {
 
 
     @Override
-    public Object get(int id) {
+    public Like get(int id) {
         return null;
     }
 
     @Override
-    public List getAll() {
+    public List<Like> getAll() {
         return null;
     }
 
     @Override
-    public void save(Object o) {
+    public void save(Like like) {
 
     }
 
     @Override
-    public void update(Object o) {
+    public void update(Like like) {
 
     }
 
     @Override
-    public void delete(Object o) {
+    public void delete(Like like) {
 
     }
 }

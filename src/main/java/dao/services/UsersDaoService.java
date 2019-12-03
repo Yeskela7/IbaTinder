@@ -36,4 +36,13 @@ public class UsersDaoService {
     public User getUser(int userId) {
         return usersDao.get(userId);
     }
+
+
+    public void addUser(String email, String name, String surname, String picUrl, int age) {
+        usersDao.save(new User(email, name, surname, picUrl, age));
+    }
+
+    public int getUserId(User user){
+        throw new RuntimeException("Not implemented yet");
+    }
 }

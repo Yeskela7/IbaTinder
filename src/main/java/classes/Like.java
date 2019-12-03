@@ -20,7 +20,7 @@ public class Like {
         return userTo;
     }
 
-    public boolean isLike() {
+    public boolean isLiked() {
         return like;
     }
 }
