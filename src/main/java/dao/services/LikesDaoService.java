@@ -23,7 +23,7 @@ public class LikesDaoService {
                 .collect(Collectors.toList());
     }
 
-    public void toLike(int from, int to, boolean liked) {
+    public void saveLike(int from, int to, boolean liked) {
         likesDao.save(new Like(from, to, liked));
     }
 
