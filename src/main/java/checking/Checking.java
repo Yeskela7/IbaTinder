@@ -10,8 +10,7 @@ public class Checking {
 
     public static boolean checkRegister(ServletRequest req, UsersDaoService uds){
         String email = req.getParameter("email");
-//        return uds.getAllUsers().stream().noneMatch(Predicate.isEqual(email));
-    throw new RuntimeException("soon");
+        return uds.getAllUsers().stream().noneMatch(user -> user.getEmail().equalsIgnoreCase(email));
     }
 
 
