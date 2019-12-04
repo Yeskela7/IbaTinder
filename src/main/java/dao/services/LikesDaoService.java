@@ -4,6 +4,7 @@ import classes.Like;
 import dao.interfaces.Dao;
 import dao.localstore.LikesDaoSql;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,11 +13,11 @@ public class LikesDaoService {
 
     private Dao<Like> likesDao = new LikesDaoSql();
 
-    public List<Like> getAll() {
+    public List<Like> getAll() throws SQLException {
         return likesDao.getAll();
     }
 
-    public List<Like> getAllLikedUsers(int userFrom) {
+    public List<Like> getAllLikedUsers(int userFrom) throws SQLException {
         return likesDao.getAll().stream()
                 .filter(u -> u.getUserFrom() == userFrom)
                 .filter(Like::isLiked)
