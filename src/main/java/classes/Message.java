@@ -2,15 +2,15 @@ package classes;
 
 public class Message {
 
-    private String from;
-    private String to;
+    private int from;
+    private int to;
     private String content;
 
-    public String getFrom() {
+    public int getFrom() {
         return from;
     }
 
-    public String getTo() {
+    public int getTo() {
         return to;
     }
 
@@ -18,7 +18,7 @@ public class Message {
         return content;
     }
 
-    public Message(String from, String to, String content) {
+    public Message(int from, int to, String content) {
         this.from = from;
         this.to = to;
         this.content = content;

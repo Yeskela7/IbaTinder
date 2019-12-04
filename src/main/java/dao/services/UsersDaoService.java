@@ -43,6 +43,6 @@ public class UsersDaoService {
     }
 
     public int getUserId(User user){
-        throw new RuntimeException("Not implemented yet");
+        return usersDao.getAll().indexOf(user);
     }
 }
