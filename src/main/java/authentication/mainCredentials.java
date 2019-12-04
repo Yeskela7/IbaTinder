@@ -3,12 +3,12 @@ package authentication;
 import java.util.HashMap;
 import java.util.Map;
 
-public class mainCredentials implements mainAuth{
+public class mainCredentials implements mainAuth {
 
     Map<String, String> credentials = new HashMap<>(); //TODO change to database input model
 
     public mainCredentials(String uid, String pwd) {
-                 credentials.put(uid, pwd); //TODO Implement database update model
+        credentials.put(uid, pwd); //TODO Implement database update model
     }
 
     @Override
