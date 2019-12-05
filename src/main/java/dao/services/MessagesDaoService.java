@@ -24,8 +24,8 @@ public class MessagesDaoService {
                 .filter(idTo -> idTo.getFrom() == userTo).collect(Collectors.toList());
     }
 
-    public void saveMessage(int from, int to, String text){
-        messageDao.save(new Message(from,to, text));
+    public void saveMessage(int from, int to, String text) {
+        messageDao.save(new Message(from, to, text));
     }
 
 }

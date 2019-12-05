@@ -42,7 +42,15 @@ public class UsersDaoService {
         usersDao.save(new User(email, name, surname, picUrl, age));
     }
 
-    public int getUserId(User user){
+    public int getUserIdByMail(String mail) {
+        List<User> list = usersDao.getAll()
+                .stream().filter(u -> u.getEmail()
+                        .equalsIgnoreCase(mail))
+                .collect(Collectors.toList());
+        return usersDao.getAll().indexOf(list.get(0));
+    }
+
+    public int getIdByUser(User user) {
         return usersDao.getAll().indexOf(user);
     }
 }

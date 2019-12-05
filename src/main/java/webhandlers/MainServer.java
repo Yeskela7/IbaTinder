@@ -15,7 +15,8 @@ public class MainServer {
         webHandler.addServlet(new ServletHolder(new LikedServlet()), "/liked/*");
         webHandler.addServlet(new ServletHolder(new MessagesServlet()), "/messages/*");
         webHandler.addServlet(new ServletHolder(new LoginServlet()), "/login/*");
-        webHandler.addServlet(new ServletHolder(new DefServlet()), "/*");
+        webHandler.addServlet(new ServletHolder(new LogoutServlet()), "/logout/*");
+        webHandler.addServlet(new ServletHolder(new RedirectServlet("/register")), "/*");
 
         webServer.setHandler(webHandler);
         webServer.start();
