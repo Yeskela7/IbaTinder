@@ -8,7 +8,7 @@ public class MainServer {
 
     public static void WebServer() throws Exception {
 
-        Server webServer = new Server(7557);
+        Server webServer = new Server(8088);
         ServletContextHandler webHandler = new ServletContextHandler();
 
         webHandler.addServlet(new ServletHolder(new UsersServlet()), "/users/*");
