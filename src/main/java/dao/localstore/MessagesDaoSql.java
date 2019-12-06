@@ -4,8 +4,6 @@ import classes.Message;
 import dao.interfaces.Dao;
 import jdbc.DbConnection;
 
-import java.lang.reflect.Method;
-import java.security.MessageDigest;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
