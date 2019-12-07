@@ -4,17 +4,11 @@ import dao.services.UsersDaoService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.sql.SQLException;
 
 public class Cookies {
 
     public static int getIdFromDb(String email, UsersDaoService service){
-        try {
-            return service.getUserIdByMail(email);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return 0;
+        return service.getUserIdByMail(email);
     }
 
     public static int getIdFromCookies(HttpServletRequest req) {

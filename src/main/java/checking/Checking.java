@@ -11,10 +11,11 @@ import java.sql.SQLException;
 
 public class Checking {
 
-    public static boolean checkCookies(ServletRequest req, UsersDaoService uds){
+    public static boolean checkCookies(ServletRequest req){
+        UsersDaoService service = new UsersDaoService();
         int c = Cookies.getIdFromCookies((HttpServletRequest) req);
         try {
-            int size = uds.getAllUsers().size();
+            int size = service.getAllUsers().size();
             if (size > c) return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -22,15 +23,18 @@ public class Checking {
         return false;
     }
 
-    public static boolean isUniqueUser(ServletRequest req, UsersDaoService uds) throws SQLException {
+    public static boolean isUniqueUser(ServletRequest req) throws SQLException {
         String email = req.getParameter("email");
-        return uds.getAllUsers().stream().noneMatch(user -> user.getEmail().equalsIgnoreCase(email));
+        UsersDaoService service = new UsersDaoService();
+        return service.getAllUsers().stream().noneMatch(user -> user.getEmail().equalsIgnoreCase(email));
     }
 
-    public static boolean isLoginCorrect(ServletRequest req, UsersDaoService uds) throws SQLException {
+    public static boolean isLoginCorrect(ServletRequest req) throws SQLException {
         String login = req.getParameter("email");
         String password = req.getParameter("password");
-        return uds.getAllUsers().stream()
+
+        UsersDaoService service = new UsersDaoService();
+        return service.getAllUsers().stream()
                 .filter(user -> user.getEmail()
                         .equalsIgnoreCase(login))
                 .allMatch(user -> user.getPassword() == Ciphering.passwordCrypt(password));

@@ -44,7 +44,7 @@ public class UsersDaoService {
         usersDao.save(new User(email, name, surname, picUrl, age, password));
     }
 
-    public int getUserIdByMail(String mail) throws SQLException {
+    public int getUserIdByMail(String mail){
         return usersDao.getId(mail);
     }
 
