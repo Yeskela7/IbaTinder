@@ -17,7 +17,7 @@ public class MatchMeApp {
         webHandler.addServlet(new ServletHolder(new LogoutServlet()), "/logout/*");
         webHandler.addServlet(new ServletHolder(new RegisterServlet()), "/register/*");
         webHandler.addServlet(new ServletHolder(new RedirectServlet("/register")), "/*");
-        webHandler.addServlet(new ServletHolder(new FileServlet()), "/webfiles/*");
+        webHandler.addServlet(new ServletHolder(new FileServlet()), "/webstock/*");
 
 
 //        webHandler.addFilter(RegisterFilter.class, "/register/*", EnumSet.of(DispatcherType.REQUEST));

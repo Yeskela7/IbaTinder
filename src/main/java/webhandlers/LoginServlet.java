@@ -17,9 +17,10 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 
 public class LoginServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Path path = Paths.get("templates/login.html");
+        Path path = Paths.get("./src/main/resources/webstock/login.html");
         ServletOutputStream os;
         try {
             os = resp.getOutputStream();
