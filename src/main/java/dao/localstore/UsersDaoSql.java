@@ -62,7 +62,6 @@ public class UsersDaoSql implements Dao<User> {
 
     @Override
     public void save(User user) {
-
         Connection conn = DbConnection.getConnection();
         final String SQLI = "INSERT INTO users (email, name, surname, picUrl, age, password) VALUES (?,?,?,?,?,?)";
         PreparedStatement ps;
@@ -75,7 +74,6 @@ public class UsersDaoSql implements Dao<User> {
             ps.setInt(5, user.getAge());
             ps.setInt(6, user.getPassword());
             ps.execute();
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

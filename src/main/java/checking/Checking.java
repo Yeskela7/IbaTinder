@@ -42,9 +42,9 @@ public class Checking {
 
     public static boolean checkPasswordEquals(ServletRequest req) {
         String password = req.getParameter("password");
-        String repassword = req.getParameter("re_password");
+        String repassword = req.getParameter("repassword");
 
-        return password.equals(repassword);
+        return repassword.equals(password);
     }
 
     public static boolean checkInputRegister(ServletRequest req) {

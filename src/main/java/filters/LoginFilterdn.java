@@ -6,8 +6,7 @@ import javax.servlet.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class RegisterFilter implements Filter {
-
+public class LoginFilterdn implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -15,16 +14,15 @@ public class RegisterFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        if (Checking.checkInputRegister(request)) {
-            try {
-                if (Checking.isUniqueUser(request)){
-                    if (Checking.checkPasswordEquals(request)){
-                        chain.doFilter(request, response);
-                    }}
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+if (Checking.checkInputLogin(request)){
+    try {
+        if (Checking.isLoginCorrect(request)){
+            chain.doFilter(request,response);
         }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
     }
 
     @Override
