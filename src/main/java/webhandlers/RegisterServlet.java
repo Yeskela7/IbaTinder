@@ -17,7 +17,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Path path = Paths.get("./templates/registration.html");
+        Path path = Paths.get("./src/main/resources/webstock/registration.html");
         ServletOutputStream os;
         try {
             os = resp.getOutputStream();

@@ -1,12 +1,7 @@
-import filters.LoginFilter;
-import filters.RegisterFilter;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import webhandlers.*;
-
-import javax.servlet.DispatcherType;
-import java.util.EnumSet;
 
 public class MatchMeApp {
 
@@ -22,9 +17,11 @@ public class MatchMeApp {
         webHandler.addServlet(new ServletHolder(new LogoutServlet()), "/logout/*");
         webHandler.addServlet(new ServletHolder(new RegisterServlet()), "/register/*");
         webHandler.addServlet(new ServletHolder(new RedirectServlet("/register")), "/*");
+        webHandler.addServlet(new ServletHolder(new FileServlet()), "/webfiles/*");
 
-        webHandler.addFilter(RegisterFilter.class, "/register/*", EnumSet.of(DispatcherType.REQUEST));
-        webHandler.addFilter(LoginFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
+
+//        webHandler.addFilter(RegisterFilter.class, "/register/*", EnumSet.of(DispatcherType.REQUEST));
+//        webHandler.addFilter(LoginFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
 
 
         webServer.setHandler(webHandler);
