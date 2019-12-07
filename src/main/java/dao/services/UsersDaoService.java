@@ -5,6 +5,7 @@ import dao.interfaces.Dao;
 import dao.localstore.UsersDaoSql;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,10 +17,10 @@ public class UsersDaoService {
         return usersDao.getAll();
     }
 
-    public List<User> getUsersWithEmail(String email) throws SQLException {
-        return usersDao.getAll().stream()
-                .filter(user -> user.getName().equalsIgnoreCase(email))
-                .collect(Collectors.toList());
+    public User getUsersWithEmail(String email) throws SQLException {
+        return new ArrayList<>(usersDao.getAll()).stream()
+                .filter(user -> user.getEmail().equalsIgnoreCase(email))
+                .collect(Collectors.toList()).get(0);
     }
 
     public List<User> getUsersWithName(String name) throws SQLException {
@@ -44,11 +45,7 @@ public class UsersDaoService {
     }
 
     public int getUserIdByMail(String mail) throws SQLException {
-        List<User> list = usersDao.getAll()
-                .stream().filter(u -> u.getEmail()
-                        .equalsIgnoreCase(mail))
-                .collect(Collectors.toList());
-        return usersDao.getAll().indexOf(list.get(0));
+        return usersDao.getId(mail);
     }
 
     public int getIdByUser(User user) throws SQLException {

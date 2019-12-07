@@ -91,4 +91,27 @@ public class UsersDaoSql implements Dao<User> {
     public void delete(User user) {
 
     }
+
+    @Override
+    public int getId(String user) {
+        Connection conn = DbConnection.getConnection();
+        final String SQLO = "SELECT * FROM users";
+        PreparedStatement ps;
+        try {
+            ps = conn.prepareStatement(SQLO);
+            ResultSet rset = ps.executeQuery();
+            String mail = "";
+            int id;
+            while (rset.next()) {
+                id = rset.getInt("id");
+                mail = rset.getString("email");
+                if (user.equalsIgnoreCase(mail)) {
+                    return id;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }

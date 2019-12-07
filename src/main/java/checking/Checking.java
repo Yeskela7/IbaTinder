@@ -1,5 +1,7 @@
 package checking;
 
+import chip.Ciphering;
+import cookies.Cookies;
 import dao.services.UsersDaoService;
 
 import javax.servlet.ServletRequest;
@@ -9,9 +11,29 @@ import java.sql.SQLException;
 
 public class Checking {
 
+    public static boolean checkCookies(ServletRequest req, UsersDaoService uds){
+        int c = Cookies.getIdFromCookies((HttpServletRequest) req);
+        try {
+            int size = uds.getAllUsers().size();
+            if (size > c) return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static boolean isUniqueUser(ServletRequest req, UsersDaoService uds) throws SQLException {
         String email = req.getParameter("email");
         return uds.getAllUsers().stream().noneMatch(user -> user.getEmail().equalsIgnoreCase(email));
+    }
+
+    public static boolean isLoginCorrect(ServletRequest req, UsersDaoService uds) throws SQLException {
+        String login = req.getParameter("email");
+        String password = req.getParameter("password");
+        return uds.getAllUsers().stream()
+                .filter(user -> user.getEmail()
+                        .equalsIgnoreCase(login))
+                .allMatch(user -> user.getPassword() == Ciphering.passwordCrypt(password));
     }
 
     public static boolean checkPasswordEquals(ServletRequest req) {
@@ -62,4 +84,5 @@ public class Checking {
         }
         return false;
     }
+
 }

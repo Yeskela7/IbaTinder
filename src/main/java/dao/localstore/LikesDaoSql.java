@@ -81,4 +81,9 @@ public class LikesDaoSql implements Dao<Like> {
     public void delete(Like like) {
 
     }
+
+    @Override
+    public int getId(String s) {
+        return 0;
+    }
 }

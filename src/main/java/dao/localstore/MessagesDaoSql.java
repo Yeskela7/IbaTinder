@@ -76,4 +76,9 @@ public class MessagesDaoSql implements Dao<Message> {
     public void delete(Message message) {
 
     }
+
+    @Override
+    public int getId(String s) {
+        return 0;
+    }
 }
