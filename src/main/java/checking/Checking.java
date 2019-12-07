@@ -5,12 +5,20 @@ import dao.services.UsersDaoService;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 
 public class Checking {
 
-    public static boolean isUniqueUser(ServletRequest req, UsersDaoService uds) {
+    public static boolean isUniqueUser(ServletRequest req, UsersDaoService uds) throws SQLException {
         String email = req.getParameter("email");
         return uds.getAllUsers().stream().noneMatch(user -> user.getEmail().equalsIgnoreCase(email));
+    }
+
+    public static boolean checkPasswordEquals(ServletRequest req) {
+        String password = req.getParameter("password");
+        String repassword = req.getParameter("re_password");
+
+        return password.equals(repassword);
     }
 
     public static boolean checkInputRegister(ServletRequest req) {

@@ -18,18 +18,18 @@ public class LikesDaoSql implements Dao<Like> {
     @Override
     public Like get(int id) throws SQLException {
         Connection conn = DbConnection.getConnection();
-        final String SQLS = "SELECT * FROM likes WHERE user_from = " + id + " AND liked = 1";
+        final String SQLS = "SELECT * FROM likes WHERE id = " + id;
         PreparedStatement stmt = conn.prepareStatement(SQLS);
         ResultSet rset = stmt.executeQuery();
 
         int user_from = 0;
         int user_to = 0;
-        int liked = 0;
+        boolean liked = false;
 
         while (rset.next()) {
             user_from = rset.getInt("user_from");
             user_to = rset.getInt("user_to");
-            liked = rset.getInt("liked");
+            liked = rset.getBoolean("liked");
         }
 
         return new Like(user_from,user_to,liked);
@@ -48,7 +48,7 @@ public class LikesDaoSql implements Dao<Like> {
             allLikes.add(new Like(
                     rset.getInt("user_from"),
                     rset.getInt("user_to"),
-                    rset.getInt("liked")
+                    rset.getBoolean("liked")
             ));
         }
 
@@ -64,7 +64,7 @@ public class LikesDaoSql implements Dao<Like> {
             ps = conn.prepareStatement(SQLI);
             ps.setInt(1, like.getUserFrom());
             ps.setInt(2, like.getUserTo());
-            ps.setInt(3, like.isLiked());
+            ps.setBoolean(3, like.isLiked());
             ps.execute();
             conn.close();
         } catch (SQLException e) {

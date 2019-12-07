@@ -13,7 +13,7 @@ public class MessagesDaoSql implements Dao<Message> {
     @Override
     public Message get(int id) throws SQLException {
         Connection conn = DbConnection.getConnection();
-        final String SQLS = "SELECT * FROM messages WHERE from_id = " + id + " OR to_id = " + id;
+        final String SQLS = "SELECT * FROM messages WHERE id = " + id;
         PreparedStatement stmt = conn.prepareStatement(SQLS);
         ResultSet rset = stmt.executeQuery();
 
