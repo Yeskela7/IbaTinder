@@ -9,6 +9,10 @@ public class DbConnection {
     private static final String DB_URL = "jdbc:mysql://ibatech.online:3306/ibatech_online";
     private static final String USERNAME = "dbadmin";
     private static final String PASSWORD = "ibatech2019";
+//
+//    private static final String DB_URL = "jdbc:postgresql://localhost:5432/lesson";
+//    private static final String USERNAME = "postgres";
+//    private static final String PASSWORD = "Yeskela7";
 
     private static Connection connection;
 

@@ -37,6 +37,7 @@ public class RegisterServlet extends HttpServlet {
         String age = req.getParameter("age");
 
         UsersDaoService usersDaoService = new UsersDaoService();
-        usersDaoService.addUser(email,name,surname,picUrl,Integer.parseInt(age), Ciphering.passwordCrypt(password));
+        usersDaoService.addUser(email,name,surname,picUrl,Integer.parseInt(age),
+                Ciphering.passwordCrypt(password));
     }
 }
