@@ -7,13 +7,15 @@ public class User {
     private final String surname;
     private final String picURL;
     private final int age;
+    private final int password;
 
-    public User(String email, String name, String surname, String picURL, int age) {
+    public User(String email, String name, String surname, String picURL, int age, int password) {
         this.email = email;
         this.name = name;
         this.surname = surname;
         this.picURL = picURL;
         this.age = age;
+        this.password = password;
     }
 
     public String getEmail() {
@@ -45,5 +47,9 @@ public class User {
                 ", picURL='" + picURL + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    public int getPassword() {
+        return password;
     }
 }

@@ -4,9 +4,9 @@ public class Like {
 
     private final int userFrom;
     private final int userTo;
-    private final boolean like;
+    private final int like;
 
-    public Like(int userFrom, int userTo, boolean like) {
+    public Like(int userFrom, int userTo, int like) {
         this.userFrom = userFrom;
         this.userTo = userTo;
         this.like = like;
@@ -20,7 +20,7 @@ public class Like {
         return userTo;
     }
 
-    public boolean isLiked() {
+    public int isLiked() {
         return like;
     }
 }
