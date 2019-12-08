@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/favicon.ico">
+    <link rel="icon" href="">
 
     <title>Chat</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
           integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- Bootstrap core CSS -->
-    <link href="templates/ftl/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/templates/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="templates/ftl/css/style.css">
+    <link rel="stylesheet" href="/templates/css/style.css">
 </head>
 <body>
 
@@ -25,7 +25,7 @@
                 <div class="row header-one text-white p-1">
                     <div class="col-md-6 name pl-2">
                         <i class="fa fa-comment"></i>
-                        <h6 class="ml-1 mb-0">${toName}</h6>
+                        <h6 class="ml-1 mb-0">${}</h6>
                     </div>
                     <div class="col-md-6 options text-right pr-0">
                         <i class="fa fa-window-minimize hide-chat-box hover text-center pt-1"></i>

@@ -26,7 +26,7 @@ public class LoginFilter implements Filter {
             if (response instanceof HttpServletResponse) {
                 HttpServletResponse rs = (HttpServletResponse) response;
                 if (!CorrectChecking.checkCookies(request)){
-                    rs.sendRedirect("register");
+                    rs.sendRedirect("messages/-1");
                 }
                 rs.sendRedirect("login");
             }
