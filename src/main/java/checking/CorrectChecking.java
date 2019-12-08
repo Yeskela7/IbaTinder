@@ -1,15 +1,17 @@
 package checking;
 
 import chip.Ciphering;
+import cookies.Cookies;
 import dao.services.UsersDaoService;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 
 public class CorrectChecking {
 
     public static boolean checkCookies(ServletRequest req) {
-        return false;
+        return  (Cookies.getIdFromCookies(((HttpServletRequest) req)) < 1) ;
     }
 
     public static boolean isUniqueUser(ServletRequest req) {

@@ -40,6 +40,6 @@ public class LoginServlet extends HttpServlet {
         Cookie c = new Cookie("%Cookies%", String.valueOf(uid));
         c.setPath("/");
         resp.addCookie(c);
-
+        resp.sendRedirect("liked");
     }
 }

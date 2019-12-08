@@ -16,7 +16,7 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        if (CorrectChecking.isLoginCorrect(request)) {
+        if (CorrectChecking.isLoginCorrect(request) && CorrectChecking.checkCookies(request)) {
             try {
                 chain.doFilter(request, response);
             } catch (IOException | ServletException e) {
@@ -25,7 +25,7 @@ public class LoginFilter implements Filter {
         } else {
             if (response instanceof HttpServletResponse) {
                 HttpServletResponse rs = (HttpServletResponse) response;
-                rs.reset();
+                rs.resetBuffer();
             }
         }
     }
