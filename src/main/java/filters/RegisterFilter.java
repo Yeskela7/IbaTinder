@@ -27,11 +27,7 @@ public class RegisterFilter implements Filter {
         } else {
             if (response instanceof HttpServletResponse) {
                 HttpServletResponse rs = (HttpServletResponse) response;
-                try {
-                    rs.sendRedirect("register");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                rs.reset();
             }
         }
     }

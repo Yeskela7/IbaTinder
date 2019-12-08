@@ -29,8 +29,16 @@ public class CorrectChecking {
         String login = req.getParameter("email");
         String password = req.getParameter("password");
         UsersDaoService service = new UsersDaoService();
-
-        return (login == null && password == null);
+        try{
+            if (login == null) return true;
+            if (service.getAllUsers().stream().anyMatch(user -> user.getEmail().equalsIgnoreCase(login))){
+                return service.getAllUsers().stream().filter(user -> user.getEmail().equalsIgnoreCase(login))
+                        .allMatch(user -> user.getPassword() == Ciphering.passwordCrypt(password));}
+            else return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 

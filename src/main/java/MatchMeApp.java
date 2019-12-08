@@ -1,3 +1,4 @@
+import filters.LoginFilter;
 import filters.RegisterFilter;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -25,7 +26,7 @@ public class MatchMeApp {
 
 
         webHandler.addFilter(RegisterFilter.class,"/register/*", EnumSet.of(DispatcherType.REQUEST));
-//        webHandler.addFilter(LoginFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
+        webHandler.addFilter(LoginFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
 
 
         webServer.setHandler(webHandler);

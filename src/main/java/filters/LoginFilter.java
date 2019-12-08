@@ -25,11 +25,7 @@ public class LoginFilter implements Filter {
         } else {
             if (response instanceof HttpServletResponse) {
                 HttpServletResponse rs = (HttpServletResponse) response;
-                try {
-                    rs.sendRedirect("login");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                rs.reset();
             }
         }
     }

@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 
         UsersDaoService usersDaoService = new UsersDaoService();
 
-        int uid = Cookies.getIdFromDb(login,usersDaoService);;
+        int uid = Cookies.getIdFromDb(login,usersDaoService);
         Cookie c = new Cookie("%Cookies%", String.valueOf(uid));
         c.setPath("/");
         resp.addCookie(c);
