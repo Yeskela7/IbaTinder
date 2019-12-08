@@ -1,6 +1,7 @@
 package dao.services;
 
 import classes.Like;
+import classes.User;
 import dao.interfaces.Dao;
 import dao.localstore.LikesDaoSql;
 
@@ -27,5 +28,6 @@ public class LikesDaoService {
     public void saveLike(int from, int to, boolean liked) {
         likesDao.save(new Like(from, to, liked));
     }
+
 
 }
