@@ -98,7 +98,7 @@ public class UsersDaoSql implements Dao<User> {
         try {
             ps = conn.prepareStatement(SQLO);
             ResultSet rset = ps.executeQuery();
-            String mail = "";
+            String mail;
             int id;
             while (rset.next()) {
                 id = rset.getInt("id");
