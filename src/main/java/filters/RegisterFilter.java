@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class RegisterFilter1 implements Filter {
+public class RegisterFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
@@ -17,7 +17,8 @@ public class RegisterFilter1 implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain){
-        if (CorrectChecking.isUniqueUser(request)) {
+        if (CorrectChecking.isUniqueUser(request)
+                && CorrectChecking.checkPasswordEquals(request)) {
             try {
                 chain.doFilter(request, response);
             } catch (IOException | ServletException e) {
@@ -26,11 +27,7 @@ public class RegisterFilter1 implements Filter {
         } else {
             if (response instanceof HttpServletResponse) {
                 HttpServletResponse rs = (HttpServletResponse) response;
-                try {
-                    rs.sendRedirect("register");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                rs.reset();
             }
         }
     }

@@ -31,7 +31,7 @@ public class MessagesServlet extends HttpServlet {
             }
         }
         receiverID = Integer.parseInt(request.getParameter("id"));
-        TemplateEngine engine = new TemplateEngine("./content");
+        TemplateEngine engine = new TemplateEngine("./templates");
         HashMap<String, Object> data = new HashMap<>();
         try {
             data.put("messages", service.getMessagesPair(senderID, receiverID));

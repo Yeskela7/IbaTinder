@@ -1,0 +1,66 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="templates/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="templates/css/style.css">
+</head>
+
+<body class="text-center">
+<div class="container">
+    <div class="signup-content">
+        <form method="post" id="signup-form" class="signup-form">
+            <h2 class="form-title" style="color: deeppink">Sign Up for MatchMe</h2>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder="First Name"
+                       maxlength="20" autocomplete="off" required/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" name="surname" id="surname" placeholder="Last Name"
+                       maxlength="20" autocomplete="off" required/>
+            </div>
+            <!-- added age-->
+            <div class="form-group">
+                <input type="number" class="form-input" name="age" id="age" placeholder="Your Age"
+                       maxlength="20" autocomplete="off" required/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" name="picUrl" id="picUrl" placeholder="add URL Photo"
+                       maxlength="20" autocomplete="off" required/>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-input" name="email" id="email" placeholder="Your Email"
+                       autocomplete="off" required/>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-input" name="password" id="password" placeholder="Password"
+                       minlength="5" maxlength="20" autocomplete="off" required/>
+                <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-input" name="repassword" id="repassword"
+                       placeholder="Repeat your password" autocomplete="off" required/>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
+            </div>
+        </form>
+        <p class="loginhere">
+            Already have an account? <a href="./login" class="loginhere-link">Login here</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

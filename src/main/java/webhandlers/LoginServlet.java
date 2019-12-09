@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Path path = Paths.get("./src/main/resources/webstock/login.html");
+        Path path = Paths.get("./src/main/resources/templates/login.html");
         ServletOutputStream os;
         try {
             os = resp.getOutputStream();
@@ -36,10 +36,10 @@ public class LoginServlet extends HttpServlet {
 
         UsersDaoService usersDaoService = new UsersDaoService();
 
-        int uid = Cookies.getIdFromDb(login,usersDaoService);;
+        int uid = Cookies.getIdFromDb(login,usersDaoService);
         Cookie c = new Cookie("%Cookies%", String.valueOf(uid));
         c.setPath("/");
         resp.addCookie(c);
-
+        resp.sendRedirect("messages");
     }
 }

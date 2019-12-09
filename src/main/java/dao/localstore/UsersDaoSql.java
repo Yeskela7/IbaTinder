@@ -93,12 +93,12 @@ public class UsersDaoSql implements Dao<User> {
     @Override
     public int getId(String user) {
         Connection conn = DbConnection.getConnection();
-        final String SQLO = "SELECT * FROM users";
         PreparedStatement ps;
         try {
+            final String SQLO = "SELECT * FROM users";
             ps = conn.prepareStatement(SQLO);
             ResultSet rset = ps.executeQuery();
-            String mail = "";
+            String mail;
             int id;
             while (rset.next()) {
                 id = rset.getInt("id");

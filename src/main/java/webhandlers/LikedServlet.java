@@ -35,7 +35,7 @@ public class LikedServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        TemplateEngine engine = new TemplateEngine("./content");
+        TemplateEngine engine = new TemplateEngine("./templates");
         HashMap<String, Object> data = new HashMap<>();
         data.put("likedPeoples", likedUsers);
         engine.render("like-page.ftl", data, response);
