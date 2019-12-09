@@ -16,7 +16,6 @@ public class UsersDaoSql implements Dao<User> {
         final String SQLS = "SELECT * FROM users WHERE id =" + id;
         PreparedStatement stmt = conn.prepareStatement(SQLS);
         ResultSet rset = stmt.executeQuery();
-        int singleUserID = 0;
 
         String email = "";
         String name = "";
