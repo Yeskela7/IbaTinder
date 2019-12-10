@@ -1,13 +1,16 @@
 package filters;
 
+
 import checking.CorrectChecking;
+import classes.Controller;
+import cookies.Cookies;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class LoginFilter implements Filter {
+public class LikeFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -15,28 +18,28 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse rs = (HttpServletResponse) response;
 
         if (req.getMethod().equalsIgnoreCase("GET")) {
+            if (CorrectChecking.checkCookies(request)) {
+                System.out.println(3);
+                rs.sendRedirect("/login/");
+            } else {
+                if (Controller.getUnmarked(Cookies.getIdFromCookies(req)).size() < 1) {
+                    System.out.println(2);
+                    rs.sendRedirect("/message/");
+                }
+            }
+            System.out.println(1);
             chain.doFilter(request, response);
-            if (!CorrectChecking.checkCookies(request)) {
-                rs.sendRedirect("/liked/");
-                return;
-            }
-
-        } else if (CorrectChecking.isLoginCorrect(request) && CorrectChecking.checkCookies(request)) {
-            try {
-                chain.doFilter(request, response);
-            } catch (IOException | ServletException e) {
-                e.printStackTrace();
-            }
+            return;
         } else {
-            if (response != null) {
-                rs.sendRedirect("/liked/");
-            }
+            System.out.println(5);
+            chain.doFilter(request, response);
         }
+
+
     }
 
     @Override

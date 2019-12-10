@@ -18,9 +18,7 @@ public class MessagesServlet extends HttpServlet {
     private MessagesDaoService service;
     private TemplateEngine engine;
 
-    public MessagesServlet(TemplateEngine engine) throws IOException {
-        senderID = -1;
-        receiverID = -1;
+    public MessagesServlet(TemplateEngine engine){
         service = new MessagesDaoService();
         this.engine = engine;
     }

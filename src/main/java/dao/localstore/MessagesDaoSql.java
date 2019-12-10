@@ -64,7 +64,6 @@ public class MessagesDaoSql implements Dao<Message> {
             ps.setInt(2, message.getTo());
             ps.setString(3, message.getContent());
             ps.execute();
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

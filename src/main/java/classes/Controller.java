@@ -1,6 +1,7 @@
 package classes;
 
 import dao.localstore.LikesDaoSql;
+import dao.services.LikesDaoService;
 import dao.services.UsersDaoService;
 
 import java.sql.SQLException;
@@ -10,27 +11,19 @@ import java.util.stream.Collectors;
 
 public class Controller {
 
-    private static UsersDaoService serviceUser;
+    private static UsersDaoService serviceUser= new UsersDaoService();
 
-    private static LikesDaoSql serviceLike;
+    private static LikesDaoService serviceLike = new LikesDaoService();
 
-    public static User getUnmarked(int localId) throws SQLException {
-        User u = serviceUser.getUser(localId);
-        Set<User> liedUser = serviceLike.getAll()
-                .stream().map(id -> serviceUser.getUser(id.getUserTo()))
-                .collect(Collectors.toSet());
-        List<User> collect = serviceUser.getAllUsers().stream()
-                .filter(user -> !user.getEmail().equalsIgnoreCase(u.getEmail()))
-                .filter(user -> liedUser.stream()
-                        .noneMatch(user::equals))
+    public static List<Integer> getUnmarked(int localId){
+        return serviceUser.getAllUsers().stream()
+                .filter(user -> serviceUser.getUserIdByMail(user.getEmail()) != localId)
+                .map(user -> serviceUser.getUserIdByMail(user.getEmail()))
+                .filter(id -> !serviceLike.getAllMarked(localId).stream()
+                        .map(Like::getUserTo)
+                        .collect(Collectors.toSet())
+                        .contains(id))
                 .collect(Collectors.toList());
-        return collect.get(0);
     }
 
-    public static Set<User> getLikedUser(int localId) throws SQLException {
-        return serviceLike.getAll()
-                .stream().filter(id -> id.getUserFrom() == localId)
-                .map(id -> serviceUser.getUser(id.getUserTo()))
-                .collect(Collectors.toSet());
-    }
 }

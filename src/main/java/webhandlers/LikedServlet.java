@@ -1,5 +1,6 @@
 package webhandlers;
 
+import classes.Controller;
 import classes.Like;
 import classes.User;
 import cookies.Cookies;
@@ -45,19 +46,11 @@ public class LikedServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String like = req.getParameter("like");
         boolean likeB = Boolean.parseBoolean(like);
-        System.out.println(likeB);
         localId = Cookies.getIdFromCookies(req);
-        List<Integer> collect = serviceUser.getAllUsers().stream()
-                .filter(user -> serviceUser.getUserIdByMail(user.getEmail()) != localId)
-                .map(user -> serviceUser.getUserIdByMail(user.getEmail()))
-                .filter(id -> !serviceLike.getAllMarked(localId).stream()
-                        .map(Like::getUserTo)
-                        .collect(Collectors.toSet())
-                        .contains(id)).collect(Collectors.toList());
+        List<Integer> collect = Controller.getUnmarked(localId);
         likedPerson = collect.get(0);
         serviceLike.saveLike(localId, likedPerson, likeB);
         resp.sendRedirect(String.valueOf(likedPerson));
-        collect.remove(0);
     }
 }
 

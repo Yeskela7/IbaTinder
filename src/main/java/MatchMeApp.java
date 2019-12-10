@@ -1,3 +1,5 @@
+import classes.Like;
+import filters.LikeFilter;
 import filters.LoginFilter;
 import filters.RegisterFilter;
 import org.eclipse.jetty.server.Server;
@@ -29,6 +31,7 @@ public class MatchMeApp {
 
         webHandler.addFilter(RegisterFilter.class, "/register/*", EnumSet.of(DispatcherType.REQUEST));
         webHandler.addFilter(LoginFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
+//        webHandler.addFilter(LikeFilter.class, "/liked/*", EnumSet.of(DispatcherType.REQUEST));
 
 
         webServer.setHandler(webHandler);
