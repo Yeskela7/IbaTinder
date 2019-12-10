@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class Cookies {
 
-    public static int getIdFromDb(String email, UsersDaoService service){
+    public static int getIdFromDb(String email, UsersDaoService service) {
         return service.getUserIdByMail(email);
     }
 

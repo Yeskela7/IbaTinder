@@ -6,12 +6,11 @@ import dao.services.UsersDaoService;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import java.sql.SQLException;
 
 public class CorrectChecking {
 
     public static boolean checkCookies(ServletRequest req) {
-        return  (Cookies.getIdFromCookies(((HttpServletRequest) req)) < 1) ;
+        return (Cookies.getIdFromCookies(((HttpServletRequest) req)) < 1);
     }
 
     public static boolean isUniqueUser(ServletRequest req) {
@@ -27,10 +26,10 @@ public class CorrectChecking {
         String password = req.getParameter("password");
         UsersDaoService service = new UsersDaoService();
         if (login == null) return true;
-        if (service.getAllUsers().stream().anyMatch(user -> user.getEmail().equalsIgnoreCase(login))){
+        if (service.getAllUsers().stream().anyMatch(user -> user.getEmail().equalsIgnoreCase(login))) {
             return service.getAllUsers().stream().filter(user -> user.getEmail().equalsIgnoreCase(login))
-                    .allMatch(user -> user.getPassword() == Ciphering.passwordCrypt(password));}
-        else return false;
+                    .allMatch(user -> user.getPassword() == Ciphering.passwordCrypt(password));
+        } else return false;
     }
 
 

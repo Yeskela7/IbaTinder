@@ -8,53 +8,53 @@ import dao.services.UsersDaoService;
 import template_engine.TemplateEngine;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LikedServlet extends HttpServlet {
     private int localId;
-    private LikesDaoService service;
+    private int likedPerson;
+    private LikesDaoService serviceLike;
     private UsersDaoService serviceUser;
     private TemplateEngine engine;
 
     public LikedServlet(TemplateEngine engine) {
         this.engine = engine;
         serviceUser = new UsersDaoService();
-        service = new LikesDaoService();
+        serviceLike = new LikesDaoService();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         localId = Cookies.getIdFromCookies(request);
-        Optional<User> u = serviceUser.getUser(localId);
-        Set<Optional<User>> liedUser = service.getAll()
-                .stream().map(id -> serviceUser.getUser(id.getUserTo()))
-                .collect(Collectors.toSet());
-        List<User> collect = serviceUser.getAllUsers().stream()
-                .filter(user -> !user.getEmail().equalsIgnoreCase(u.get().getEmail()))
-                .filter(user -> liedUser.stream()
-                        .noneMatch(user1 -> user.equals(user1.get())))
-                .collect(Collectors.toList());
-        System.out.println(collect);
-        User url = collect.get(0);
+        User toLike = serviceUser
+                .getUser(Integer.parseInt(request.getPathInfo().replace("/", "")));
+        likedPerson = serviceUser.getUserIdByMail(toLike.getEmail());
         HashMap<String, Object> data = new HashMap<>();
-        data.put("likedPeople", url);
+        data.put("likedPeople", toLike);
         engine.render("like-page.ftl", data, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String login = req.getParameter("like");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        localId = Cookies.getIdFromCookies(req);
+        List<Integer> collect = serviceUser.getAllUsers().stream()
+                .filter(user -> serviceUser.getUserIdByMail(user.getEmail()) != localId)
+                .map(user -> serviceUser.getUserIdByMail(user.getEmail()))
+                .filter(id -> !serviceLike.getAllLikedUsers(localId).stream()
+                        .map(Like::getUserTo)
+                        .collect(Collectors.toSet())
+                        .contains(id)).collect(Collectors.toList());
+        likedPerson = collect.get(0);
+        serviceLike.saveLike(localId, likedPerson, true);
+        resp.sendRedirect(String.valueOf(likedPerson));
+        collect.remove(0);
     }
 }
 

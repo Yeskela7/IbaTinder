@@ -1,13 +1,11 @@
 package filters;
 
-import checking.Checking;
 import checking.CorrectChecking;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class LoginFilter implements Filter {
     @Override
@@ -19,7 +17,10 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         HttpServletRequest req = (HttpServletRequest) request;
-        if (req.getMethod().equalsIgnoreCase("GET")) chain.doFilter(request,response);
+        if (req.getMethod().equalsIgnoreCase("GET")) {
+            chain.doFilter(request, response);
+            return;
+        }
         if (CorrectChecking.isLoginCorrect(request) && CorrectChecking.checkCookies(request)) {
             try {
                 chain.doFilter(request, response);
@@ -29,7 +30,7 @@ public class LoginFilter implements Filter {
         } else {
             if (response instanceof HttpServletResponse) {
                 HttpServletResponse rs = (HttpServletResponse) response;
-                if (!CorrectChecking.checkCookies(request)){
+                if (!CorrectChecking.checkCookies(request)) {
                     rs.sendRedirect("/liked");
                 }
             }

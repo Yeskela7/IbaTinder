@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Objects;
+
 public class User {
 
     private final String email;
@@ -51,5 +53,19 @@ public class User {
 
     public int getPassword() {
         return password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this.hashCode() == o.hashCode()) return false;
+        if (this == o) return true;
+        if (getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(email, user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
     }
 }

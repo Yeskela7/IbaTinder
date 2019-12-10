@@ -4,15 +4,17 @@ import classes.User;
 import dao.interfaces.Dao;
 import jdbc.DbConnection;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class UsersDaoSql implements Dao<User> {
 
     @Override
-    public Optional<User> get(int id) throws SQLException {
+    public User get(int id) throws SQLException {
         Connection conn = DbConnection.getConnection();
         final String SQLS = "SELECT * FROM users WHERE id =" + id;
         PreparedStatement stmt = conn.prepareStatement(SQLS);
@@ -34,7 +36,7 @@ public class UsersDaoSql implements Dao<User> {
             password = rset.getInt("password");
 
         }
-        return Optional.of(new User(email, name, surname, picUrl, age, password));
+        return new User(email, name, surname, picUrl, age, password);
     }
 
 

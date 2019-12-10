@@ -1,6 +1,5 @@
 package webhandlers;
 
-import checking.Checking;
 import cookies.Cookies;
 import dao.services.UsersDaoService;
 
@@ -14,12 +13,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.SQLException;
 
 public class LoginServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp){
         Path path = Paths.get("./src/main/resources/webstock/login.html");
         ServletOutputStream os;
         try {
@@ -31,14 +29,15 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String login = req.getParameter("email");
 
         UsersDaoService usersDaoService = new UsersDaoService();
 
-        int uid = Cookies.getIdFromDb(login,usersDaoService);
+        int uid = Cookies.getIdFromDb(login, usersDaoService);
         Cookie c = new Cookie("%Cookies%", String.valueOf(uid));
         c.setPath("/");
         resp.addCookie(c);
+        resp.sendRedirect("liked");
     }
 }

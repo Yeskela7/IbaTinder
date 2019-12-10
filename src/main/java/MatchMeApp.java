@@ -11,7 +11,7 @@ import java.util.EnumSet;
 
 public class MatchMeApp {
 
-    public static void main(String[] args)throws Exception {
+    public static void main(String[] args) throws Exception {
 
         Server webServer = new Server(8088);
         ServletContextHandler webHandler = new ServletContextHandler();
@@ -27,7 +27,7 @@ public class MatchMeApp {
         webHandler.addServlet(new ServletHolder(new FileServlet()), "/webstock/*");
 
 
-        webHandler.addFilter(RegisterFilter.class,"/register/*", EnumSet.of(DispatcherType.REQUEST));
+        webHandler.addFilter(RegisterFilter.class, "/register/*", EnumSet.of(DispatcherType.REQUEST));
         webHandler.addFilter(LoginFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
 
 

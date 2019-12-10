@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class Checking {
 
-    public static boolean checkCookies(ServletRequest req){
+    public static boolean checkCookies(ServletRequest req) {
         UsersDaoService service = new UsersDaoService();
         int c = Cookies.getIdFromCookies((HttpServletRequest) req);
         int size = service.getAllUsers().size();

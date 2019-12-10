@@ -4,15 +4,17 @@ import classes.Message;
 import dao.interfaces.Dao;
 import jdbc.DbConnection;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class MessagesDaoSql implements Dao<Message> {
 
     @Override
-    public Optional<Message> get(int id) throws SQLException {
+    public Message get(int id) throws SQLException {
         Connection conn = DbConnection.getConnection();
         final String SQLS = "SELECT * FROM messages WHERE id = " + id;
         PreparedStatement stmt = conn.prepareStatement(SQLS);
@@ -28,7 +30,7 @@ public class MessagesDaoSql implements Dao<Message> {
             message = rset.getString("content");
         }
 
-        return Optional.of(new Message(from_id, to_id, message));
+        return new Message(from_id, to_id, message);
     }
 
 
