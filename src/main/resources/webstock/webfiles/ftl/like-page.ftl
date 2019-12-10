@@ -28,13 +28,13 @@
                         <br>
                     </div>
                     <div class="col-12 col-lg-6">
-                        <button id="dislike" type="submit" class="btn btn-outline-danger btn-block"><span
+                        <button type="submit" name="like" value='false' class="btn btn-outline-danger btn-block"><span
                                     class="fa fa-times"></span>
                             Dislike
                         </button>
                     </div>
                     <div class="col-12 col-lg-6">
-                        <button id="like" type="submit" class="btn btn-outline-success btn-block"><span
+                        <button type="submit" name="like" value='true' class="btn btn-outline-success btn-block"><span
                                     class="fa fa-heart"></span> Like
                         </button>
                     </div>

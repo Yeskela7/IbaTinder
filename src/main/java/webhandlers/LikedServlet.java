@@ -45,6 +45,7 @@ public class LikedServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String like = req.getParameter("like");
         boolean likeB = Boolean.parseBoolean(like);
+        System.out.println(likeB);
         localId = Cookies.getIdFromCookies(req);
         List<Integer> collect = serviceUser.getAllUsers().stream()
                 .filter(user -> serviceUser.getUserIdByMail(user.getEmail()) != localId)
