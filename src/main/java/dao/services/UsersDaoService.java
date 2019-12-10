@@ -7,14 +7,20 @@ import dao.localstore.UsersDaoSql;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UsersDaoService {
 
     private Dao<User> usersDao = new UsersDaoSql();
 
-    public List<User> getAllUsers() throws SQLException {
-        return usersDao.getAll();
+    public List<User> getAllUsers(){
+        try {
+            return usersDao.getAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public User getUsersWithEmail(String email) throws SQLException {
@@ -35,8 +41,13 @@ public class UsersDaoService {
                 .collect(Collectors.toList());
     }
 
-    public User getUser(int userId) throws SQLException {
-        return usersDao.get(userId);
+    public Optional<User> getUser(int userId){
+        try {
+            return usersDao.get(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 
 

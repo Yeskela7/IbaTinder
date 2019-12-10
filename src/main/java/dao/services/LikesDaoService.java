@@ -13,15 +13,25 @@ public class LikesDaoService {
 
     private Dao<Like> likesDao = new LikesDaoSql();
 
-    public List<Like> getAll() throws SQLException {
-        return likesDao.getAll();
+    public List<Like> getAll()  {
+        try {
+            return likesDao.getAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public List<Like> getAllLikedUsers(int userFrom) throws SQLException {
-        return likesDao.getAll().stream()
-                .filter(u -> u.getUserFrom() == userFrom)
-                .filter(Like::isLiked)
-                .collect(Collectors.toList());
+    public List<Like> getAllLikedUsers(int userFrom){
+        try {
+            return likesDao.getAll().stream()
+                    .filter(u -> u.getUserFrom() == userFrom)
+                    .filter(Like::isLiked)
+                    .collect(Collectors.toList());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void saveLike(int from, int to, boolean liked) {

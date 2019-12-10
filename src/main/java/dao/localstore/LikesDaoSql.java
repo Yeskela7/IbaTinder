@@ -1,7 +1,6 @@
 package dao.localstore;
 
 import classes.Like;
-import classes.Message;
 import dao.interfaces.Dao;
 import jdbc.DbConnection;
 
@@ -11,12 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class LikesDaoSql implements Dao<Like> {
 
 
     @Override
-    public Like get(int id) throws SQLException {
+    public Optional<Like> get(int id) throws SQLException {
         Connection conn = DbConnection.getConnection();
         final String SQLS = "SELECT * FROM likes WHERE id = " + id;
         PreparedStatement stmt = conn.prepareStatement(SQLS);
@@ -32,7 +32,7 @@ public class LikesDaoSql implements Dao<Like> {
             liked = rset.getBoolean("liked");
         }
 
-        return new Like(user_from,user_to,liked);
+        return Optional.of(new Like(user_from, user_to, liked));
     }
 
     @Override

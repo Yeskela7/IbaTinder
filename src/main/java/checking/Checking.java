@@ -14,12 +14,8 @@ public class Checking {
     public static boolean checkCookies(ServletRequest req){
         UsersDaoService service = new UsersDaoService();
         int c = Cookies.getIdFromCookies((HttpServletRequest) req);
-        try {
-            int size = service.getAllUsers().size();
-            if (size > c) return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        int size = service.getAllUsers().size();
+        if (size > c) return true;
         return false;
     }
 

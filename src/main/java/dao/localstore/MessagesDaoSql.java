@@ -7,11 +7,12 @@ import jdbc.DbConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MessagesDaoSql implements Dao<Message> {
 
     @Override
-    public Message get(int id) throws SQLException {
+    public Optional<Message> get(int id) throws SQLException {
         Connection conn = DbConnection.getConnection();
         final String SQLS = "SELECT * FROM messages WHERE id = " + id;
         PreparedStatement stmt = conn.prepareStatement(SQLS);
@@ -27,7 +28,7 @@ public class MessagesDaoSql implements Dao<Message> {
             message = rset.getString("content");
         }
 
-        return new Message(from_id,to_id,message);
+        return Optional.of(new Message(from_id, to_id, message));
     }
 
 
