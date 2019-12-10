@@ -23,6 +23,17 @@ public class LikesDaoService {
         }
     }
 
+    public Set<Like> getAllMarked(int userFrom){
+        try {
+            return likesDao.getAll().stream()
+                    .filter(u -> u.getUserFrom() == userFrom)
+                    .collect(Collectors.toSet());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public Set<Like> getAllLikedUsers(int userFrom) {
         try {
             return likesDao.getAll().stream()
