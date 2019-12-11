@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-12 col-lg-6" style="padding-bottom: 30px">
                     <button type="button" class="btn btn-outline-warning btn-block"
-                            onclick="window.location.href = './people-list.html';"> Liked Users
+                            onclick="window.location.href = '/users';"> Liked Users
                     </button>
                 </div>
             </div>
