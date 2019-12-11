@@ -44,8 +44,7 @@ public class LikedServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String like = req.getParameter("like");
-        boolean likeB = Boolean.parseBoolean(like);
+        boolean likeB = Boolean.parseBoolean(req.getParameter("like"));
         localId = Cookies.getIdFromCookies(req);
         List<Integer> collect = Controller.getUnmarked(localId);
         likedPerson = collect.get(0);

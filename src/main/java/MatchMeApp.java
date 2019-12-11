@@ -19,7 +19,7 @@ public class MatchMeApp {
         ServletContextHandler webHandler = new ServletContextHandler();
         TemplateEngine engine = TemplateEngine.folder("./src/main/resources/webstock/webfiles/ftl/");
 
-        webHandler.addServlet(new ServletHolder(new UsersServlet()), "/users/*");
+        webHandler.addServlet(new ServletHolder(new UsersServlet(engine)), "/users/*");
         webHandler.addServlet(new ServletHolder(new LikedServlet(engine)), "/liked/*");
         webHandler.addServlet(new ServletHolder(new MessagesServlet(engine)), "/messages/*");
         webHandler.addServlet(new ServletHolder(new LoginServlet()), "/login/*");

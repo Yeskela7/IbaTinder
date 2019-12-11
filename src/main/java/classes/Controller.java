@@ -26,4 +26,15 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
+    public static List<User> getLikedUser(int localId){
+        return serviceUser.getAllUsers().stream()
+                .filter(user -> serviceUser.getUserIdByMail(user.getEmail()) != localId)
+                .map(user -> serviceUser.getUserIdByMail(user.getEmail()))
+                .filter(id -> serviceLike.getAllLikedUsers(localId).stream()
+                        .map(Like::getUserTo)
+                        .collect(Collectors.toSet())
+                        .contains(id))
+                .map(integer -> serviceUser.getUser(integer))
+                .collect(Collectors.toList());
+    }
 }
