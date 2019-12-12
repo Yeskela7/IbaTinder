@@ -20,9 +20,26 @@ public class MessagesDaoService {
         return messageDao.getAll().stream().filter(id -> id.getTo() == userId).collect(Collectors.toList());
     }
 
-    public List<Message> getMessagesPair(int userFrom, int userTo) throws SQLException {
-        return messageDao.getAll().stream().filter(idFrom -> idFrom.getFrom() == userFrom)
-                .filter(idTo -> idTo.getFrom() == userTo).collect(Collectors.toList());
+//    public List<Message> getMessagesPair(int userFrom, int userTo) {
+//        try {
+//            return messageDao.getAll().stream().filter(idFrom -> idFrom.getFrom() == userFrom)
+//                    .filter(idTo -> idTo.getFrom() == userTo).collect(Collectors.toList());
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+
+    public List<Message> getMessagesFromAToB(int from, int to) throws SQLException {
+        return messageDao.getAll().stream()
+                .filter(message -> message.getFrom() == from && message.getTo() == to).collect(Collectors.toList());
+    }
+
+    public List<Message> getMessagesPair(int from, int to) throws SQLException {
+        return messageDao.getAll().stream()
+                .filter(message -> message.getFrom() == from || message.getFrom() == to)
+                .filter(message -> message.getTo() == to || message.getTo() == from)
+                .collect(Collectors.toList());
     }
 
     public void saveMessage(int from, int to, String text) {

@@ -1,7 +1,9 @@
 package webhandlers;
 
+import classes.User;
 import cookies.Cookies;
 import dao.services.MessagesDaoService;
+import dao.services.UsersDaoService;
 import template_engine.TemplateEngine;
 
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,7 @@ import java.util.HashMap;
 public class MessagesServlet extends HttpServlet {
     private int senderID;
     private int receiverID;
+    private UsersDaoService serviceUser;
     private MessagesDaoService service;
     private TemplateEngine engine;
 
@@ -26,10 +29,12 @@ public class MessagesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         senderID = Cookies.getIdFromCookies(request);
-        receiverID = Integer.parseInt(request.getParameter("id"));
+        User receiverUser = serviceUser
+                .getUser(Integer.parseInt(request.getPathInfo().replace("/", "")));
         HashMap<String, Object> data = new HashMap<>();
         try {
-            data.put("messages", service.getMessagesPair(senderID, receiverID));
+            data.put("messagesFromA", service.getMessagesFromAToB(senderID, receiverID));
+            data.put("messagesFromB", service.getMessagesFromAToB(receiverID, senderID));
         } catch (SQLException e) {
             e.printStackTrace();
         }
