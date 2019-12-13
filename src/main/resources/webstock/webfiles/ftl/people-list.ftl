@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/favicon.ico">
+    <link rel="icon" href="/webstock/webfiles/images/logo.png">
 
     <title>People list</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/webstock/webfiles/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="css/styled.css">
+    <link rel="stylesheet" href="/webstock/webfiles/css/styler.css">
 </head>
 <body>
 
@@ -21,17 +21,17 @@
     <div class="newrow">
         <div class="newcolumn">
             <button type="button" class="btn btn-outline-warning btn-block"
-                    onclick="window.location.href = './chat.html';"> My Messages
+                    onclick="window.location.href = '/chat';"> My Messages
             </button>
         </div>
         <div class="newcolumn">
             <button type="button" class="btn btn-outline-warning btn-block"
-                    onclick="window.location.href = './like-page.html';"> Liked Users
+                    onclick="window.location.href = '/liked';"> Liked Users
             </button>
         </div>
         <div class="newcolumn">
             <button type="button" class="btn btn-outline-warning btn-block"
-                    onclick="window.location.href = 'localhost:8088/logout';"> Logout
+                    onclick="window.location.href = '/logout';"> Logout
             </button>
         </div>
     </div>
