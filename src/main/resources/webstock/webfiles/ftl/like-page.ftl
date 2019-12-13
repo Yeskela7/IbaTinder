@@ -17,7 +17,7 @@
 
 <section class="profile_area">
     <div class="container">
-        <form method="post">
+        <form method="po    st">
         <div class="profile_inner p_50">
             <div class="row">
                 <div class="col-lg-5">
@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-12 col-lg-6" style="padding-bottom: 30px">
                     <button type="button" class="btn btn-outline-warning btn-block"
-                            onclick="window.location.href = './chat.html';"> My Messages
+                            onclick="window.location.href = 'chat.ftl';"> My Messages
                     </button>
                 </div>
                 <div class="col-12 col-lg-6" style="padding-bottom: 30px">

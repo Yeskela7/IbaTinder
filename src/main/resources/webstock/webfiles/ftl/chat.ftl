@@ -10,15 +10,16 @@
     <title>Chat</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../templates/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../../templates/css/style.css">
 </head>
 <body>
 
 <div class="container">
     <div class="row">
+        <form method="post">
         <div class="chat-main col-6 offset-3">
             <div class="col-md-12 chat-header">
                 <div class="row header-one text-white p-1">
@@ -59,7 +60,16 @@
                             <div class="receive-msg-desc float-left ml-2">
                                 <p class="bg-white m-0 pt-1 pb-1 pl-2 pr-2 rounded">
                                     hiii <br>
-                                    How are you ?<br>
+                                    <br>
+                                    <tr>
+                                        <#list messages as message>
+                                    <tr>
+                                        <td>${message.content}</td>
+                                        <#--                                <td><img class="img-fluid" src=${person.picURL} alt=""></td>-->
+
+                                    </tr>
+                                    </#list>
+                                    </tr>
                                 </p>
                                 <span class="receive-msg-time">ketty, Jan 25, 6:20 PM</span>
                             </div>
@@ -130,6 +140,7 @@
                 </div>
             </div>
         </div>
+        </form>
     </div>
 </div>
 

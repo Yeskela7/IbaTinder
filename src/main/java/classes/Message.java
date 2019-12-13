@@ -1,10 +1,21 @@
 package classes;
 
+import java.sql.Date;
+import java.util.Objects;
+
 public class Message {
 
     private int from;
     private int to;
     private String content;
+    private long date ;
+
+    public Message(int from, int to, String content, long date) {
+        this.from = from;
+        this.to = to;
+        this.content = content;
+        this.date = date;
+    }
 
     public int getFrom() {
         return from;
@@ -18,19 +29,37 @@ public class Message {
         return content;
     }
 
-    public Message(int from, int to, String content) {
-        this.from = from;
-        this.to = to;
-        this.content = content;
+    public long getDate() {
+        return date;
+    }
+
+    public String getDateString(){
+        return DateConverter.format(date);
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Message{");
-        sb.append("from:'").append(from).append('\'');
-        sb.append("to:'").append(to).append('\'');
-        sb.append("content:'").append(content).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "Message{" +
+                "from=" + from +
+                ", to=" + to +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Message message = (Message) o;
+        return from == message.from &&
+                to == message.to &&
+                Objects.equals(content, message.content) &&
+                Objects.equals(date, message.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(from, to, content, date);
     }
 }

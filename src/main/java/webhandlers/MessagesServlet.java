@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 
@@ -29,12 +30,10 @@ public class MessagesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         senderID = Cookies.getIdFromCookies(request);
-        User receiverUser = serviceUser
-                .getUser(Integer.parseInt(request.getPathInfo().replace("/", "")));
+        receiverID = Integer.parseInt(request.getPathInfo().replace("/", ""));
         HashMap<String, Object> data = new HashMap<>();
         try {
-            data.put("messagesFromA", service.getMessagesFromAToB(senderID, receiverID));
-            data.put("messagesFromB", service.getMessagesFromAToB(receiverID, senderID));
+            data.put("messages", service.getMessages(senderID, receiverID));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -42,8 +41,10 @@ public class MessagesServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        int receiverID = Integer.parseInt(request.getParameter("id"));
+        receiverID = Integer.parseInt(request.getParameter("id"));
         String text = request.getParameter("message");
-        service.saveMessage(senderID, receiverID, text);
+
+        senderID = Cookies.getIdFromCookies(request);
+        service.saveMessage(senderID, receiverID, text, System.currentTimeMillis());
     }
 }

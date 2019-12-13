@@ -23,11 +23,9 @@ public class LikeFilter implements Filter {
 
         if (req.getMethod().equalsIgnoreCase("GET")) {
             if (CorrectChecking.checkCookies(request)) {
-                System.out.println(3);
                 rs.sendRedirect("/login/");
             } else {
                 if (Controller.getUnmarked(Cookies.getIdFromCookies(req)).size() < 1) {
-                    System.out.println(2);
                     rs.sendRedirect("/message/");
                 }
             }
