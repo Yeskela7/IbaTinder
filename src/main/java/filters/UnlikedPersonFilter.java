@@ -1,13 +1,15 @@
 package filters;
 
-import checking.CorrectChecking;
+import classes.Controller;
+import cookies.Cookies;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
-public class LoginFilter implements Filter {
+public class UnlikedPersonFilter  implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -18,12 +20,18 @@ public class LoginFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse rs = (HttpServletResponse) response;
-
+        System.out.println(3);
         if (req.getMethod().equalsIgnoreCase("GET")) {
-            chain.doFilter(request, response);
-
-        } else if (CorrectChecking.isLoginCorrect(request)) {
-            chain.doFilter(request, response);
+            if (Controller.getUnmarked(Cookies.getIdFromCookies(req)).size() > 0) {
+                System.out.println("sds");
+                int s = Controller.getUnmarked(Cookies.getIdFromCookies(req)).get(0);
+                System.out.println(s);
+                rs.sendRedirect("/liked/" + s);
+                chain.doFilter(request, response);
+            }else {
+                System.out.println(32);
+                rs.sendRedirect("/users");
+            }
         }
     }
 

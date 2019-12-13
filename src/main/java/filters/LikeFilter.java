@@ -20,24 +20,15 @@ public class LikeFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse rs = (HttpServletResponse) response;
+        System.out.println(1);
 
         if (req.getMethod().equalsIgnoreCase("GET")) {
-            if (CorrectChecking.checkCookies(request)) {
-                rs.sendRedirect("/login/");
+            if (Controller.getUnmarked(Cookies.getIdFromCookies(req)).size() < 1) {
+                rs.sendRedirect("/message/");
             } else {
-                if (Controller.getUnmarked(Cookies.getIdFromCookies(req)).size() < 1) {
-                    rs.sendRedirect("/message/");
-                }
+                chain.doFilter(request, response);
             }
-            System.out.println(1);
-            chain.doFilter(request, response);
-            return;
-        } else {
-            System.out.println(5);
-            chain.doFilter(request, response);
         }
-
-
     }
 
     @Override

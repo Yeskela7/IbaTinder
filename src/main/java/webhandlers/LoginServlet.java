@@ -31,13 +31,11 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String login = req.getParameter("email");
-
         UsersDaoService usersDaoService = new UsersDaoService();
-
         int uid = Cookies.getIdFromDb(login, usersDaoService);
         Cookie c = new Cookie("%Cookies%", String.valueOf(uid));
         c.setPath("/");
         resp.addCookie(c);
-        resp.sendRedirect("liked");
+        resp.sendRedirect("/liked/");
     }
 }

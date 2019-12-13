@@ -65,7 +65,6 @@
                                         <#list messages as message>
                                     <tr>
                                         <td>${message.content}</td>
-                                        <#--                                <td><img class="img-fluid" src=${person.picURL} alt=""></td>-->
 
                                     </tr>
                                     </#list>

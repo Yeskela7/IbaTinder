@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class LoginFilter implements Filter {
+public class CookiesFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -18,13 +18,15 @@ public class LoginFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse rs = (HttpServletResponse) response;
-
-        if (req.getMethod().equalsIgnoreCase("GET")) {
-            chain.doFilter(request, response);
-
-        } else if (CorrectChecking.isLoginCorrect(request)) {
-            chain.doFilter(request, response);
+        System.out.println(2);
+        if(req.getMethod().equalsIgnoreCase("GET")){
+            if (!CorrectChecking.checkCookies(request)){
+                chain.doFilter(request,response);
+            }else {
+                rs.sendRedirect("/login");
+            }
         }
+
     }
 
     @Override

@@ -1,8 +1,6 @@
 import classes.DateConverter;
 import classes.Like;
-import filters.LikeFilter;
-import filters.LoginFilter;
-import filters.RegisterFilter;
+import filters.*;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -33,8 +31,11 @@ public class MatchMeApp {
 
 
         webHandler.addFilter(RegisterFilter.class, "/register/*", EnumSet.of(DispatcherType.REQUEST));
+        webHandler.addFilter(CookiesFilter.class, "/liked/*", EnumSet.of(DispatcherType.REQUEST));
         webHandler.addFilter(LoginFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
-//        webHandler.addFilter(LikeFilter.class, "/liked/*", EnumSet.of(DispatcherType.REQUEST));
+        webHandler.addFilter(LikeFilter.class, "/liked/*", EnumSet.of(DispatcherType.REQUEST));
+        webHandler.addFilter(UnlikedPersonFilter.class, "/liked/", EnumSet.of(DispatcherType.REQUEST));
+        webHandler.addFilter(UnlikedPersonFilter.class, "/liked", EnumSet.of(DispatcherType.REQUEST));
 
 
         webServer.setHandler(webHandler);
