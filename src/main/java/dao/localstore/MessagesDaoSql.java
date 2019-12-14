@@ -63,7 +63,7 @@ public class MessagesDaoSql implements Dao<Message> {
     @Override
     public void save(Message message) {
         Connection conn = DbConnection.getConnection();
-        final String SQLI = "INSERT INTO messages (from_id, to_id, content) VALUES (?,?,?,?)";
+        final String SQLI = "INSERT INTO messages (from_id, to_id, content, time) VALUES (?,?,?,?)";
         PreparedStatement ps;
         try {
             ps = conn.prepareStatement(SQLI);
