@@ -22,7 +22,7 @@ public class LikeFilter implements Filter {
         HttpServletResponse rs = (HttpServletResponse) response;
         if (req.getMethod().equalsIgnoreCase("GET")) {
             if (Controller.getUnmarked(Cookies.getIdFromCookies(req)).size() < 1) {
-                rs.sendRedirect("/list/");
+                 rs.sendRedirect("/list/");
             } else {
                 chain.doFilter(request, response);
             }

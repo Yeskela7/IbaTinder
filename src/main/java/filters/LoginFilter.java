@@ -24,6 +24,8 @@ public class LoginFilter implements Filter {
 
         } else if (CorrectChecking.isLoginCorrect(request)) {
             chain.doFilter(request, response);
+        }else{
+            rs.reset();
         }
     }
 

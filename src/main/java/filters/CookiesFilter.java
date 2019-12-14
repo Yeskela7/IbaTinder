@@ -18,14 +18,15 @@ public class CookiesFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse rs = (HttpServletResponse) response;
-        if(req.getMethod().equalsIgnoreCase("GET")){
-            if (CorrectChecking.checkCookies(request)){
+
+        if (req.getMethod().equalsIgnoreCase("GET")) {
+            if (CorrectChecking.checkCookies(request)) {
                 rs.sendRedirect("/login/");
-            }else {
-                chain.doFilter(request,response);
+            } else {
+                chain.doFilter(request, response);
             }
         } else {
-            chain.doFilter(request,response);
+            chain.doFilter(request, response);
         }
 
     }

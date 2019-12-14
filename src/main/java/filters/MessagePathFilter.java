@@ -17,8 +17,7 @@ public class MessagePathFilter implements Filter {
         HttpServletResponse rs = (HttpServletResponse) response;
         if(req.getMethod().equalsIgnoreCase("GET")){
             if (req.getPathInfo().equalsIgnoreCase("/")){
-                System.out.println(req.getPathInfo());
-                rs.sendRedirect("/list/");
+                 rs.sendRedirect("/list/");
             }else {
                 chain.doFilter(request,response);
             }
