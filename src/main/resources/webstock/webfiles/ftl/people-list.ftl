@@ -26,7 +26,7 @@
         </div>
         <div class="newcolumn">
             <button type="button" class="btn btn-outline-warning btn-block"
-                    onclick="window.location.href = '/like';"> Liked Users
+                    onclick="window.location.href = '/like';"> Like Users
             </button>
         </div>
         <div class="newcolumn">
