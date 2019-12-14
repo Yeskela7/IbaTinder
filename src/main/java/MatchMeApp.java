@@ -1,5 +1,3 @@
-import classes.DateConverter;
-import classes.Like;
 import filters.*;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -8,8 +6,6 @@ import template_engine.TemplateEngine;
 import webhandlers.*;
 
 import javax.servlet.DispatcherType;
-import java.time.Instant;
-import java.util.Date;
 import java.util.EnumSet;
 
 public class MatchMeApp {
@@ -20,9 +16,9 @@ public class MatchMeApp {
         ServletContextHandler webHandler = new ServletContextHandler();
         TemplateEngine engine = TemplateEngine.folder("./src/main/resources/webstock/webfiles/ftl/");
 
-        webHandler.addServlet(new ServletHolder(new UsersServlet(engine)), "/users/*");
-        webHandler.addServlet(new ServletHolder(new LikedServlet(engine)), "/liked/*");
-        webHandler.addServlet(new ServletHolder(new MessagesServlet(engine)), "/messages/*");
+        webHandler.addServlet(new ServletHolder(new UsersServlet(engine)), "/list/*");
+        webHandler.addServlet(new ServletHolder(new LikeServlet(engine)), "/like");
+        webHandler.addServlet(new ServletHolder(new MessagesServlet(engine)), "/chat/*");
         webHandler.addServlet(new ServletHolder(new LoginServlet()), "/login/*");
         webHandler.addServlet(new ServletHolder(new LogoutServlet()), "/logout/*");
         webHandler.addServlet(new ServletHolder(new RegisterServlet()), "/register/*");
@@ -31,12 +27,15 @@ public class MatchMeApp {
 
 
         webHandler.addFilter(RegisterFilter.class, "/register/*", EnumSet.of(DispatcherType.REQUEST));
-        webHandler.addFilter(CookiesFilter.class, "/liked/*", EnumSet.of(DispatcherType.REQUEST));
-        webHandler.addFilter(LoginFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
-        webHandler.addFilter(LikeFilter.class, "/liked/*", EnumSet.of(DispatcherType.REQUEST));
-        webHandler.addFilter(UnlikedPersonFilter.class, "/liked/", EnumSet.of(DispatcherType.REQUEST));
-        webHandler.addFilter(UnlikedPersonFilter.class, "/liked", EnumSet.of(DispatcherType.REQUEST));
 
+        webHandler.addFilter(LoginFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
+
+        webHandler.addFilter(CookiesFilter.class, "/like/*", EnumSet.of(DispatcherType.REQUEST));
+        webHandler.addFilter(LikeFilter.class, "/like/*", EnumSet.of(DispatcherType.REQUEST));
+        webHandler.addFilter(UnlikedPersonFilter.class, "/like/*", EnumSet.of(DispatcherType.REQUEST));
+
+        webHandler.addFilter(CookiesFilter.class, "/chat/*", EnumSet.of(DispatcherType.REQUEST));
+//        webHandler.addFilter(MessagePathFilter.class, "/chat/*", EnumSet.of(DispatcherType.REQUEST));
 
         webServer.setHandler(webHandler);
         webServer.start();

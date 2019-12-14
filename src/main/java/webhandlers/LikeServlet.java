@@ -17,14 +17,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LikedServlet extends HttpServlet {
+public class LikeServlet extends HttpServlet {
     private int localId;
     private int likedPerson;
     private LikesDaoService serviceLike;
     private UsersDaoService serviceUser;
     private TemplateEngine engine;
+    private List<Integer> collect = Controller.getUnmarked(localId);
 
-    public LikedServlet(TemplateEngine engine) {
+    public LikeServlet(TemplateEngine engine) {
         this.engine = engine;
         serviceUser = new UsersDaoService();
         serviceLike = new LikesDaoService();
@@ -32,24 +33,26 @@ public class LikedServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+        collect = Controller.getUnmarked(localId);
         localId = Cookies.getIdFromCookies(request);
-        User toLike = serviceUser
-                .getUser(Integer.parseInt(request.getPathInfo().replace("/", "")));
-        likedPerson = serviceUser.getUserIdByMail(toLike.getEmail());
+        likedPerson = collect.get(0);
+        User toLike = serviceUser.getUser(likedPerson);
         HashMap<String, Object> data = new HashMap<>();
         data.put("likedPeople", toLike);
         engine.render("like-page.ftl", data, response);
+        collect.remove(0);
+        System.out.println(likedPerson);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        collect = Controller.getUnmarked(localId);
         boolean likeB = Boolean.parseBoolean(req.getParameter("like"));
         localId = Cookies.getIdFromCookies(req);
-        List<Integer> collect = Controller.getUnmarked(localId);
         likedPerson = collect.get(0);
         serviceLike.saveLike(localId, likedPerson, likeB);
-        resp.sendRedirect(String.valueOf(likedPerson));
+        System.out.println(likedPerson);
+        resp.sendRedirect("like");
     }
 }
 

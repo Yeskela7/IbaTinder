@@ -21,12 +21,12 @@
     <div class="newrow">
         <div class="newcolumn">
             <button type="button" class="btn btn-outline-warning btn-block"
-                    onclick="window.location.href = '/chat';"> My Messages
+                    onclick="window.location.href = '/chat/';"> My Messages
             </button>
         </div>
         <div class="newcolumn">
             <button type="button" class="btn btn-outline-warning btn-block"
-                    onclick="window.location.href = '/liked';"> Liked Users
+                    onclick="window.location.href = '/like/';"> Liked Users
             </button>
         </div>
         <div class="newcolumn">
@@ -61,7 +61,7 @@
                                 </td>
                                 <td class="align-middle" style="padding-left: 100px">
                                     <small class="minitext">Age</small><br>
-                                    <p class="normaltext">25</p>
+                                    <p class="normaltext">${person.age}</p>
                                 </td>
                                 <td  class="align-middle" style="padding-left: 100px">
                                     <small class="minitext">E-mail</small><br>

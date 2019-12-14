@@ -61,12 +61,12 @@
                 <div class="row">
                     <div class="col-12 col-lg-6" style="padding-bottom: 30px">
                         <button type="button" class="btn btn-outline-warning btn-block"
-                                onclick="window.location.href = './chat.html';"> My Messages
+                                onclick="window.location.href = '/chat/';"> My Messages
                         </button>
                     </div>
                     <div class="col-12 col-lg-6" style="padding-bottom: 30px">
                         <button type="button" class="btn btn-outline-warning btn-block"
-                                onclick="window.location.href = '../../people-list.html';"> Liked Users
+                                onclick="window.location.href = '/list/';"> Liked Users
                         </button>
                     </div>
                 </div>

@@ -30,9 +30,7 @@ public class MessagesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         senderID = Cookies.getIdFromCookies(request);
-        System.out.println(senderID);
         receiverID = Integer.parseInt(request.getPathInfo().replace("/", ""));
-        System.out.println(receiverID);
         HashMap<String, Object> data = new HashMap<>();
         try {
             data.put("messages", service.getMessages(senderID, receiverID));
@@ -43,9 +41,8 @@ public class MessagesServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        receiverID = Integer.parseInt(request.getParameter("id"));
+        receiverID = Integer.parseInt(request.getPathInfo().replace("/", ""));
         String text = request.getParameter("message");
-
         senderID = Cookies.getIdFromCookies(request);
         service.saveMessage(senderID, receiverID, text, System.currentTimeMillis());
     }

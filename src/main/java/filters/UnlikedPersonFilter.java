@@ -20,17 +20,12 @@ public class UnlikedPersonFilter  implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse rs = (HttpServletResponse) response;
-        System.out.println(3);
         if (req.getMethod().equalsIgnoreCase("GET")) {
             if (Controller.getUnmarked(Cookies.getIdFromCookies(req)).size() > 0) {
-                System.out.println("sds");
-                int s = Controller.getUnmarked(Cookies.getIdFromCookies(req)).get(0);
-                System.out.println(s);
-                rs.sendRedirect("/liked/" + s);
+                System.out.println(1111);
                 chain.doFilter(request, response);
             }else {
-                System.out.println(32);
-                rs.sendRedirect("/users");
+                rs.sendRedirect("/list");
             }
         }
     }
