@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
@@ -39,5 +39,6 @@ public class RegisterServlet extends HttpServlet {
         UsersDaoService usersDaoService = new UsersDaoService();
         usersDaoService.addUser(email, name, surname, picUrl, Integer.parseInt(age),
                 Ciphering.passwordCrypt(password));
+        resp.sendRedirect("/login");
     }
 }

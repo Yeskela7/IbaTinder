@@ -38,7 +38,6 @@ public class LikeServlet extends HttpServlet {
         data.put("likedPeople", toLike);
         engine.render("like-page.ftl", data, response);
         collect.remove(0);
-        System.out.println(likedPerson);
     }
 
     @Override
@@ -48,7 +47,6 @@ public class LikeServlet extends HttpServlet {
         boolean likeB = Boolean.parseBoolean(req.getParameter("like"));
         likedPerson = collect.get(0);
         serviceLike.saveLike(localId, likedPerson, likeB);
-        System.out.println(likedPerson);
         resp.sendRedirect("like");
     }
 }

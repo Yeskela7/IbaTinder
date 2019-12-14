@@ -22,10 +22,12 @@ public class LoginFilter implements Filter {
         if (req.getMethod().equalsIgnoreCase("GET")) {
             chain.doFilter(request, response);
 
-        } else if (CorrectChecking.isLoginCorrect(request)) {
-            chain.doFilter(request, response);
-        }else{
-            rs.reset();
+        } else {
+            if (CorrectChecking.isLoginCorrect(request)) {
+                chain.doFilter(request, response);
+            } else {
+                rs.sendRedirect("/login");
+            }
         }
     }
 

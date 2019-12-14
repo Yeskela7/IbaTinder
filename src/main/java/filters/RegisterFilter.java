@@ -22,18 +22,19 @@ public class RegisterFilter implements Filter {
         HttpServletResponse rs = (HttpServletResponse) response;
 
         if (req.getMethod().equalsIgnoreCase("GET")) {
-            chain.doFilter(request, response);}
-
-        else if (CorrectChecking.isUniqueUser(request)
-                && CorrectChecking.checkPasswordEquals(request)) {
-            try {
-                rs.sendRedirect("/login/");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            chain.doFilter(request, response);
         } else {
-            if (response != null) {
-                rs.reset();
+            if (CorrectChecking.isUniqueUser(request)
+                    && CorrectChecking.checkPasswordEquals(request)) {
+                try {
+                    chain.doFilter(request, response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                if (response != null) {
+                    rs.reset();
+                }
             }
         }
     }
