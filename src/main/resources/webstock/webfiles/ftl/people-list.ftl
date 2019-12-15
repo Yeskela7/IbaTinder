@@ -21,12 +21,7 @@
     <div class="newrow">
         <div class="newcolumn">
             <button type="button" class="btn btn-outline-warning btn-block"
-                    onclick="window.location.href = '/chat/';"> My Messages
-            </button>
-        </div>
-        <div class="newcolumn">
-            <button type="button" class="btn btn-outline-warning btn-block"
-                    onclick="window.location.href = '/like';"> Like Users
+                    onclick="window.location.href = '/like';"> Matching Page
             </button>
         </div>
         <div class="newcolumn">

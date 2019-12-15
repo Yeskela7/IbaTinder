@@ -9,12 +9,14 @@ public class Message {
     private int to;
     private String content;
     private long date ;
+    private String dateString;
 
     public Message(int from, int to, String content, long date) {
         this.from = from;
         this.to = to;
         this.content = content;
         this.date = date;
+        this.dateString = getDateString();
     }
 
     public int getFrom() {

@@ -18,7 +18,7 @@ import java.util.HashMap;
 public class MessagesServlet extends HttpServlet {
     private int senderID;
     private int receiverID;
-    private UsersDaoService serviceUser;
+    private UsersDaoService serviceUser = new UsersDaoService();
     private MessagesDaoService service;
     private TemplateEngine engine;
 
@@ -31,9 +31,14 @@ public class MessagesServlet extends HttpServlet {
 
         senderID = Cookies.getIdFromCookies(request);
         receiverID = Integer.parseInt(request.getPathInfo().replace("/", ""));
+        User senderForPic = serviceUser.getUser(senderID);
+        User receiverForPic = serviceUser.getUser(receiverID);
         HashMap<String, Object> data = new HashMap<>();
         try {
             data.put("messages", service.getMessages(senderID, receiverID));
+            data.put("sender", senderID);
+            data.put("senderPic", senderForPic);
+            data.put("receiverPic", receiverForPic);
         } catch (SQLException e) {
             e.printStackTrace();
         }
