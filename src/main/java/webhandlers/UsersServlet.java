@@ -18,6 +18,7 @@ import java.util.stream.Stream;
 
 public class UsersServlet extends HttpServlet {
     private TemplateEngine engine;
+    private UsersDaoService service = new UsersDaoService();
 
     public UsersServlet(TemplateEngine engine) {
         this.engine = engine;
@@ -30,5 +31,12 @@ public class UsersServlet extends HttpServlet {
         HashMap<String, Object> data = new HashMap<>();
         data.put("likedPeople", toLike);
         engine.render("people-list.ftl", data, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String login = req.getParameter("email");
+        int id = service.getUserIdByMail(login);
+        resp.sendRedirect("/chat/" + id);
     }
 }

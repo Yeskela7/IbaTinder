@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class MessagePathFilter implements Filter {
+public class    MessagePathFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {
 

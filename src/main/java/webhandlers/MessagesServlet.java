@@ -32,6 +32,8 @@ public class MessagesServlet extends HttpServlet {
         senderID = Cookies.getIdFromCookies(request);
         receiverID = Integer.parseInt(request.getPathInfo().replace("/", ""));
         HashMap<String, Object> data = new HashMap<>();
+        User sender = serviceUser.getUser(senderID);
+        User receiver = serviceUser.getUser(receiverID);
         try {
             data.put("messages", service.getMessages(senderID, receiverID));
         } catch (SQLException e) {

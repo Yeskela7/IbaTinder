@@ -16,7 +16,6 @@ import java.util.List;
 
 public class MessagesDaoSql implements Dao<Message> {
 
-    private LocalDateTime time;
 
     @Override
     public Message get(int id) throws SQLException {

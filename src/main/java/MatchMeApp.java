@@ -27,6 +27,7 @@ public class MatchMeApp {
 
 
         webHandler.addFilter(RegisterFilter.class, "/register/*", EnumSet.of(DispatcherType.REQUEST));
+        webHandler.addFilter(CookiesLoginFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
 
         webHandler.addFilter(LoginFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
         webHandler.addFilter(CookiesLoginFilter.class, "/login/*", EnumSet.of(DispatcherType.REQUEST));
@@ -35,8 +36,8 @@ public class MatchMeApp {
         webHandler.addFilter(LikeFilter.class, "/like", EnumSet.of(DispatcherType.REQUEST));
         webHandler.addFilter(UnlikedPersonFilter.class, "/like", EnumSet.of(DispatcherType.REQUEST));
 
-        webHandler.addFilter(CookiesFilter.class, "/chat/*", EnumSet.of(DispatcherType.REQUEST));
-        webHandler.addFilter(MessagePathFilter.class, "/chat/*", EnumSet.of(DispatcherType.REQUEST));
+//        webHandler.addFilter(CookiesFilter.class, "/chat/*", EnumSet.of(DispatcherType.REQUEST));
+//        webHandler.addFilter(MessagePathFilter.class, "/chat/*", EnumSet.of(DispatcherType.REQUEST));
 
         webServer.setHandler(webHandler);
         webServer.start();

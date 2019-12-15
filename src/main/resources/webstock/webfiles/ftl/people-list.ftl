@@ -39,6 +39,7 @@
 
 <div class="container">
     <div class="row" >
+        <form method="post">
         <div class="col-8 offset-2">
             <div class="panel panel-default user_panel">
                 <div class="panel-heading">
@@ -67,6 +68,11 @@
                                     <small class="minitext">E-mail</small><br>
                                     <p class="normaltext">${person.email}</p>
                                 </td>
+                                <td  class="align-middle" style="padding-left: 100px">
+                                <button type="submit" name="email" value='${person.email}' class="btn btn-outline-warning btn-block"
+                                              > Chat
+                                </button>
+                                </td>
                             </tr>
                             </#list>
                             </tbody>
@@ -75,6 +81,7 @@
                 </div>
             </div>
         </div>
+        </form>
     </div>
 </div>
 
