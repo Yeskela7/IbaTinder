@@ -32,8 +32,6 @@ public class MessagesServlet extends HttpServlet {
         senderID = Cookies.getIdFromCookies(request);
         receiverID = Integer.parseInt(request.getPathInfo().replace("/", ""));
         HashMap<String, Object> data = new HashMap<>();
-        User sender = serviceUser.getUser(senderID);
-        User receiver = serviceUser.getUser(receiverID);
         try {
             data.put("messages", service.getMessages(senderID, receiverID));
         } catch (SQLException e) {
@@ -42,10 +40,12 @@ public class MessagesServlet extends HttpServlet {
         engine.render("chat.ftl", data, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         receiverID = Integer.parseInt(request.getPathInfo().replace("/", ""));
         String text = request.getParameter("message");
         senderID = Cookies.getIdFromCookies(request);
         service.saveMessage(senderID, receiverID, text, System.currentTimeMillis());
+
+        response.sendRedirect("/chat" + request.getPathInfo());
     }
 }

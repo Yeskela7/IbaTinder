@@ -29,6 +29,9 @@
                                     </tr>
                                     </#list>
                                     </tr>
+            <div class="col-md-7 pl-0">
+                <input type="text" name="message" class="border-0" placeholder=" Send message"/>
+            </div>
 
         </form>
     </div>
