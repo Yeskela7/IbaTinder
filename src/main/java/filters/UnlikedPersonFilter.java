@@ -7,11 +7,10 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.stream.Collectors;
 
-public class UnlikedPersonFilter  implements Filter {
+public class UnlikedPersonFilter implements Filter {
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
     }
 
@@ -23,11 +22,11 @@ public class UnlikedPersonFilter  implements Filter {
         if (req.getMethod().equalsIgnoreCase("GET")) {
             if (Controller.getUnmarked(Cookies.getIdFromCookies(req)).size() > 0) {
                 chain.doFilter(request, response);
-            }else {
+            } else {
                 rs.sendRedirect("/list/");
             }
-        }else {
-            chain.doFilter(request,response);
+        } else {
+            chain.doFilter(request, response);
         }
     }
 

@@ -1,6 +1,5 @@
 package classes;
 
-import java.sql.Date;
 import java.util.Objects;
 
 public class Message {
@@ -8,7 +7,7 @@ public class Message {
     private int from;
     private int to;
     private String content;
-    private long date ;
+    private long date;
     private String dateString;
 
     public Message(int from, int to, String content, long date) {
@@ -35,7 +34,7 @@ public class Message {
         return date;
     }
 
-    public String getDateString(){
+    private String getDateString() {
         return DateConverter.format(date);
     }
 
@@ -50,10 +49,10 @@ public class Message {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Message message = (Message) o;
+    public boolean equals(Object that) {
+        if (this == that) return true;
+        if (that == null || getClass() != that.getClass()) return false;
+        Message message = (Message) that;
         return from == message.from &&
                 to == message.to &&
                 Objects.equals(content, message.content) &&

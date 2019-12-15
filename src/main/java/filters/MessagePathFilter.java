@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class    MessagePathFilter implements Filter {
+public class MessagePathFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {
 
@@ -15,14 +15,14 @@ public class    MessagePathFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse rs = (HttpServletResponse) response;
-        if(req.getMethod().equalsIgnoreCase("GET")){
-            if (req.getPathInfo().equalsIgnoreCase("/")){
-                 rs.sendRedirect("/list/");
-            }else {
-                chain.doFilter(request,response);
+        if (req.getMethod().equalsIgnoreCase("GET")) {
+            if (req.getPathInfo().equalsIgnoreCase("/")) {
+                rs.sendRedirect("/list/");
+            } else {
+                chain.doFilter(request, response);
             }
         } else {
-            chain.doFilter(request,response);
+            chain.doFilter(request, response);
         }
     }
 

@@ -4,14 +4,11 @@ import classes.Message;
 import dao.interfaces.Dao;
 import jdbc.DbConnection;
 
-import java.sql.*;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.temporal.TemporalAccessor;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MessagesDaoSql implements Dao<Message> {

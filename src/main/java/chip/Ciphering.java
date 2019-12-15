@@ -10,5 +10,4 @@ public class Ciphering {
         int prime = 997259;
         return (password.hashCode() ^ salt.hashCode()) % prime;
     }
-
 }

@@ -1,6 +1,5 @@
 package classes;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class DateConverter {
@@ -10,14 +9,4 @@ public class DateConverter {
     public static String format(long mills) {
         return formatForDate.format(mills);
     }
-
-
-    public static long stringToMills(String string) throws ParseException {
-        try {
-            return formatForDate.parse(string).getTime();
-        } catch (ParseException ex) {
-            return 0;
-        }
-    }
-
 }

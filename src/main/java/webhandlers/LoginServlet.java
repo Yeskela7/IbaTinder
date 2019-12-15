@@ -3,7 +3,6 @@ package webhandlers;
 import cookies.Cookies;
 import dao.services.UsersDaoService;
 
-import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +16,7 @@ import java.nio.file.Paths;
 public class LoginServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp){
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         Path path = Paths.get("./src/main/resources/webstock/login.html");
         ServletOutputStream os;
         try {

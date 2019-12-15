@@ -23,7 +23,7 @@ public class LikesDaoService {
         }
     }
 
-    public Set<Like> getAllMarked(int userFrom){
+    public Set<Like> getAllMarked(int userFrom) {
         try {
             return likesDao.getAll().stream()
                     .filter(u -> u.getUserFrom() == userFrom)

@@ -56,11 +56,11 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this.hashCode() == o.hashCode()) return false;
-        if (this == o) return true;
-        if (getClass() != o.getClass()) return false;
-        User user = (User) o;
+    public boolean equals(Object that) {
+        if (this.hashCode() == that.hashCode()) return false;
+        if (this == that) return true;
+        if (getClass() != that.getClass()) return false;
+        User user = (User) that;
         return Objects.equals(email, user.email);
     }
 

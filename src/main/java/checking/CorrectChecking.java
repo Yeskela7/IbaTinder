@@ -32,7 +32,6 @@ public class CorrectChecking {
         } else return false;
     }
 
-
     public static boolean checkPasswordEquals(ServletRequest req) {
         String password = req.getParameter("password");
         String repassword = req.getParameter("repassword");
@@ -40,31 +39,5 @@ public class CorrectChecking {
         if (password == null && repassword == null) return true;
         assert password != null;
         return password.equals(repassword);
-    }
-
-//    public static boolean checkInputRegister(ServletRequest req) {
-//        String login = req.getParameter("email");
-//        String password = req.getParameter("password");
-//        String repassword = req.getParameter("repassword");
-//        String name = req.getParameter("name");
-//        String surname = req.getParameter("surname");
-//        String picUrl = req.getParameter("picUrl");
-//        String age = req.getParameter("age");
-//
-//        return (login == null || password == null || name == null ||
-//                surname == null || picUrl == null || age == null || repassword == null);
-//    }
-
-    public static boolean checkLogin(ServletRequest req) {
-        String login = req.getParameter("email");
-        if (login != null) {
-            UsersDaoService service = new UsersDaoService();
-            return service.getUserIdByMail(login) != -1;
-        }
-        return true;
-    }
-
-    public static boolean hasCookies(ServletRequest request) {
-        return false;
     }
 }

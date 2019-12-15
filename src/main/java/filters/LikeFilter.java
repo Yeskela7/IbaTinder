@@ -1,7 +1,6 @@
 package filters;
 
 
-import checking.CorrectChecking;
 import classes.Controller;
 import cookies.Cookies;
 
@@ -12,7 +11,7 @@ import java.io.IOException;
 
 public class LikeFilter implements Filter {
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
     }
 
@@ -22,12 +21,12 @@ public class LikeFilter implements Filter {
         HttpServletResponse rs = (HttpServletResponse) response;
         if (req.getMethod().equalsIgnoreCase("GET")) {
             if (Controller.getUnmarked(Cookies.getIdFromCookies(req)).size() < 1) {
-                 rs.sendRedirect("/list/");
+                rs.sendRedirect("/list/");
             } else {
                 chain.doFilter(request, response);
             }
         } else {
-            chain.doFilter(request,response);
+            chain.doFilter(request, response);
         }
     }
 

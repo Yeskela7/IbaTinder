@@ -27,11 +27,11 @@ public class Like {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this.hashCode() == o.hashCode()) return false;
-        if (this == o) return true;
-        if (getClass() != o.getClass()) return false;
-        Like like = (Like) o;
+    public boolean equals(Object that) {
+        if (this.hashCode() == that.hashCode()) return false;
+        if (this == that) return true;
+        if (getClass() != that.getClass()) return false;
+        Like like = (Like) that;
         return userFrom == like.userFrom &&
                 userTo == like.userTo;
     }

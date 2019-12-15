@@ -3,7 +3,6 @@ package webhandlers;
 import chip.Ciphering;
 import dao.services.UsersDaoService;
 
-import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,7 @@ import java.nio.file.Paths;
 public class RegisterServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         Path path = Paths.get("./src/main/resources/webstock/registration.html");
         ServletOutputStream os;
         try {

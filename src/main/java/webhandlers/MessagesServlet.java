@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 
 
@@ -22,7 +21,7 @@ public class MessagesServlet extends HttpServlet {
     private MessagesDaoService service;
     private TemplateEngine engine;
 
-    public MessagesServlet(TemplateEngine engine){
+    public MessagesServlet(TemplateEngine engine) {
         service = new MessagesDaoService();
         this.engine = engine;
     }
