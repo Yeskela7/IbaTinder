@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Objects;
+
 public class Like {
 
     private final int userFrom;
@@ -22,5 +24,20 @@ public class Like {
 
     public boolean isLiked() {
         return like;
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this.hashCode() == that.hashCode()) return false;
+        if (this == that) return true;
+        if (getClass() != that.getClass()) return false;
+        Like like = (Like) that;
+        return userFrom == like.userFrom &&
+                userTo == like.userTo;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userFrom, userTo);
     }
 }
