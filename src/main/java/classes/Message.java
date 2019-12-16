@@ -34,7 +34,7 @@ public class Message {
         return date;
     }
 
-    private String getDateString() {
+    public String getDateString() {
         return DateConverter.format(date);
     }
 
