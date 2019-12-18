@@ -10,6 +10,6 @@ import java.nio.file.Paths;
 public class FileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Files.copy(Paths.get("./src/main/resources/webstock/" + req.getPathInfo()), resp.getOutputStream());
+        Files.copy(Paths.get("./src/main/resources/webstock/", req.getPathInfo()), resp.getOutputStream());
     }
 }

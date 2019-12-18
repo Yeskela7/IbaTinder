@@ -7,8 +7,10 @@ import freemarker.template.TemplateExceptionHandler;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystem;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,8 +24,10 @@ public final class TemplateEngine {
     }
 
     public static TemplateEngine resources(final String path_from_project_resources) throws IOException, URISyntaxException {
+        URI uri = TemplateEngine.class.getResource(path_from_project_resources).toURI();
+
         String path = Paths
-                .get(TemplateEngine.class.getResource(path_from_project_resources).toURI())
+                .get(uri)
                 .toFile().getAbsolutePath();
         return new TemplateEngine(path);
     }

@@ -15,7 +15,9 @@ public class MatchMeApp {
         Server webServer = new Server(8088);
         ServletContextHandler webHandler = new ServletContextHandler();
 //        TemplateEngine engine = TemplateEngine.folder("./src/main/resources/webstock/webfiles/ftl/");
-        TemplateEngine engine = TemplateEngine.resources("/webstock/webfiles/ftl");
+
+        webHandler.addServlet(new ServletHolder(new FileServlet()), "/webstock/*");
+        TemplateEngine engine = TemplateEngine.resources("/webstock/webfiles/ftl/");
 
         webHandler.addServlet(new ServletHolder(new UsersServlet(engine)), "/list/*");
         webHandler.addServlet(new ServletHolder(new LikeServlet(engine)), "/like");
@@ -24,7 +26,6 @@ public class MatchMeApp {
         webHandler.addServlet(new ServletHolder(new LogoutServlet()), "/logout/*");
         webHandler.addServlet(new ServletHolder(new RegisterServlet()), "/register/*");
         webHandler.addServlet(new ServletHolder(new RedirectServlet("/login")), "/*");
-        webHandler.addServlet(new ServletHolder(new FileServlet()), "/webstock/*");
 
 
         webHandler.addFilter(RegisterFilter.class, "/register/*", EnumSet.of(DispatcherType.REQUEST));
