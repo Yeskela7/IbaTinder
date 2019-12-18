@@ -12,7 +12,7 @@ public class MatchMeApp {
 
     public static void main(String[] args) throws Exception {
 
-        Server webServer = new Server(8088);
+        Server webServer = new Server(Integer.parseInt(System.getenv("$PORT")));
         ServletContextHandler webHandler = new ServletContextHandler();
         TemplateEngine engine = new TemplateEngine("./src/main/resources/webstock/webfiles/ftl/");
 
