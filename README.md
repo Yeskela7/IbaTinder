@@ -5,6 +5,6 @@ Tinder Application for IBA Tech Academy Step project
 [MatchMe](matchme.ibatech.onlin)
 
 # Team
--Hajialiyev Aleksey
--Mirzabi Babayev
--Fidan Sadirli
+-Hajialiyev Aleksey   
+-Mirzabi Babayev  
+-Fidan Sadirli  
