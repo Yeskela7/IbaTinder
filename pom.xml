@@ -7,20 +7,90 @@
     <groupId>groupId</groupId>
     <artifactId>IbaTinder</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>corp1</id>
+            <name>Corporate Repository</name>
+            <url>file:///Users/Dom/.m2</url>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
 
     <build>
         <plugins>
+            <!-- Java 8 source and target settings -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.2</version>
+                <version>3.8.1</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
+            </plugin>
+            <!-- Copy dependencies to `${project.build.directory}/deps` -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.build.directory}/deps
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <version>3.6.2</version>-->
+<!--                <configuration>-->
+<!--                    <source>8</source>-->
+<!--                    <target>8</target>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--        <artifactId>maven-assembly-plugin</artifactId>-->
+<!--        <executions>-->
+<!--            <execution>-->
+<!--                <phase>package</phase>-->
+<!--                <goals>-->
+<!--                    <goal>single</goal>-->
+<!--                </goals>-->
+<!--            </execution>-->
+<!--        </executions>-->
+<!--        <configuration>-->
+<!--            <archive>-->
+<!--                <manifest>-->
+<!--                    <addClasspath>true</addClasspath>-->
+<!--                    <classpathPrefix>lib/</classpathPrefix>-->
+<!--                    <mainClass>MatchMeApp</mainClass>-->
+<!--                </manifest>-->
+<!--            </archive>-->
+<!--            <descriptorRefs>-->
+<!--                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--            </descriptorRefs>-->
+<!--        </configuration>-->
+<!--    </plugin>-->
+<!--    </plugins>-->
+<!--    </build>-->
 
     <dependencies>
         <!-- For Java Web -->
@@ -36,6 +106,19 @@
             <artifactId>jetty-server</artifactId>
             <version>9.4.24.v20191120</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.6.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-deploy-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>3.0.0-M1</version>
+        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -61,7 +144,23 @@
             <artifactId>freemarker</artifactId>
             <version>2.3.28</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId> org.apache.cassandra</groupId>-->
+<!--            <artifactId>cassandra-all</artifactId>-->
+<!--            <version>0.8.1</version>-->
 
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.slf4j</groupId>-->
+<!--                    <artifactId>slf4j-log4j12</artifactId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <groupId>log4j</groupId>-->
+<!--                    <artifactId>log4j</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+
+<!--        </dependency>-->
     </dependencies>
 
 </project>

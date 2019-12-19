@@ -12,10 +12,10 @@ public class MatchMeApp {
 
     public static void main(String[] args) throws Exception {
 
-        Server webServer = new Server(8088);
+//        Server webServer = new Server(Integer.parseInt(System.getenv("PORT")));
+        Server webServer = new Server(9001);
         ServletContextHandler webHandler = new ServletContextHandler();
-//        TemplateEngine engine = TemplateEngine.folder("./src/main/resources/webstock/webfiles/ftl/");
-        TemplateEngine engine = TemplateEngine.resources("/webstock/webfiles/ftl");
+        TemplateEngine engine = new TemplateEngine("./src/main/resources/webstock/webfiles/ftl/");
 
         webHandler.addServlet(new ServletHolder(new UsersServlet(engine)), "/list/*");
         webHandler.addServlet(new ServletHolder(new LikeServlet(engine)), "/like");
