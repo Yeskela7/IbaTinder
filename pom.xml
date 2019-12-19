@@ -55,42 +55,6 @@
             </plugin>
         </plugins>
     </build>
-<!--    <build>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-compiler-plugin</artifactId>-->
-<!--                <version>3.6.2</version>-->
-<!--                <configuration>-->
-<!--                    <source>8</source>-->
-<!--                    <target>8</target>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--        <artifactId>maven-assembly-plugin</artifactId>-->
-<!--        <executions>-->
-<!--            <execution>-->
-<!--                <phase>package</phase>-->
-<!--                <goals>-->
-<!--                    <goal>single</goal>-->
-<!--                </goals>-->
-<!--            </execution>-->
-<!--        </executions>-->
-<!--        <configuration>-->
-<!--            <archive>-->
-<!--                <manifest>-->
-<!--                    <addClasspath>true</addClasspath>-->
-<!--                    <classpathPrefix>lib/</classpathPrefix>-->
-<!--                    <mainClass>MatchMeApp</mainClass>-->
-<!--                </manifest>-->
-<!--            </archive>-->
-<!--            <descriptorRefs>-->
-<!--                <descriptorRef>jar-with-dependencies</descriptorRef>-->
-<!--            </descriptorRefs>-->
-<!--        </configuration>-->
-<!--    </plugin>-->
-<!--    </plugins>-->
-<!--    </build>-->
 
     <dependencies>
         <!-- For Java Web -->
@@ -130,7 +94,6 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.8</version>
         </dependency>
-        <!-- For Tests -->
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -144,23 +107,6 @@
             <artifactId>freemarker</artifactId>
             <version>2.3.28</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId> org.apache.cassandra</groupId>-->
-<!--            <artifactId>cassandra-all</artifactId>-->
-<!--            <version>0.8.1</version>-->
-
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.slf4j</groupId>-->
-<!--                    <artifactId>slf4j-log4j12</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <groupId>log4j</groupId>-->
-<!--                    <artifactId>log4j</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-
-<!--        </dependency>-->
     </dependencies>
 
 </project>
